@@ -75,7 +75,7 @@ class _GenerateFlowScreenState extends State<GenerateFlowScreen> {
                   child: AppButton(
                     text: 'Mulai Harimu',
                     variant: AppButtonVariant.softGradient,
-                    onPressed: () => context.go('/showcase'),
+                    onPressed: () => context.go('/today'),
                   ),
                 ),
               const SizedBox(height: AppSpacing.s16),
