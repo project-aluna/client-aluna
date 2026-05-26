@@ -253,59 +253,59 @@ Radius:
 
 ## 6.1 Buttons
 
-* [ ] Primary button
-* [ ] Secondary button
-* [ ] Ghost button
-* [ ] Soft gradient button
-* [ ] Icon button
-* [ ] Loading button
-* [ ] Disabled state
+* [x] Primary button
+* [x] Secondary button
+* [x] Ghost button
+* [x] Soft gradient button
+* [x] Icon button
+* [x] Loading button
+* [x] Disabled state
 
 ---
 
 ## 6.2 Inputs
 
-* [ ] Text input
-* [ ] Multiline input
-* [ ] Time input display
-* [ ] Search input
-* [ ] Validation state
-* [ ] Error helper text
+* [x] Text input
+* [x] Multiline input
+* [x] Time input display
+* [x] Search input
+* [x] Validation state
+* [x] Error helper text
 
 ---
 
 ## 6.3 Cards
 
-* [ ] Routine card
-* [ ] Daily routine card
-* [ ] Step card
-* [ ] Mood card
-* [ ] Reflection card
-* [ ] Premium card
-* [ ] Empty state card
+* [x] Routine card
+* [x] Daily routine card
+* [x] Step card
+* [x] Mood card
+* [x] Reflection card
+* [x] Premium card
+* [x] Empty state card
 
 ---
 
 ## 6.4 Selectors
 
-* [ ] Goal chip
-* [ ] Category chip
-* [ ] Mood selector
-* [ ] Energy selector
-* [ ] Stress selector
-* [ ] Day selector
-* [ ] Theme selector placeholder
+* [x] Goal chip
+* [x] Category chip
+* [x] Mood selector
+* [x] Energy selector
+* [x] Stress selector
+* [x] Day selector
+* [x] Theme selector placeholder
 
 ---
 
 ## 6.5 Feedback Components
 
-* [ ] Loading state
-* [ ] Empty state
-* [ ] Error state
-* [ ] Snackbar / toast
-* [ ] Success animation
-* [ ] Pull to refresh
+* [x] Loading state
+* [x] Empty state
+* [x] Error state
+* [x] Snackbar / toast
+* [x] Success animation
+* [x] Pull to refresh
 
 ---
 
