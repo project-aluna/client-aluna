@@ -132,7 +132,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Rawat harimu dengan lebih lembut.',
+                          'Ruang kecil untuk menata hari tanpa ekspektasi berlebih.',
                           textAlign: TextAlign.center,
                           style: AppTypography.display.copyWith(
                             color: AppColors.cocoaInk,
@@ -142,7 +142,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                         ),
                         const SizedBox(height: AppSpacing.s16),
                         Text(
-                          'Bangun rutinitas kecil yang membantu hidup terasa lebih tenang dan terurus.',
+                          'Bukan untuk jadi sempurna, cuma biar hari ini terasa lebih ringan.',
                           textAlign: TextAlign.center,
                           style: AppTypography.body.copyWith(
                             color: AppColors.cocoaInk.withValues(alpha: 0.6),
