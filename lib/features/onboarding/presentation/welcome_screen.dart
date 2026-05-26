@@ -13,28 +13,7 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 8),
-    )..repeat(reverse: true);
-    
-    _animation = Tween<double>(begin: 0.9, end: 1.1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOutSine)
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -45,72 +24,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
           children: [
             const Spacer(),
             
-            // Visual Area with Blobs
             Expanded(
               flex: 3,
               child: Center(
-                child: SizedBox(
-                  width: 280,
-                  height: 280,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Blob 1
-                      AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: _animation.value,
-                            child: child,
-                          );
-                        },
-                        child: Container(
-                          width: 240,
-                          height: 240,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.roseClay.withValues(alpha: 0.4),
-                          ),
-                        ),
-                      ),
-                      // Blob 2 (Offset and different scale)
-                      AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: 2.0 - _animation.value,
-                            child: child,
-                          );
-                        },
-                        child: Transform.translate(
-                          offset: const Offset(-20, 20),
-                          child: Container(
-                            width: 200,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.sageBreeze.withValues(alpha: 0.3),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Blur Effect over blobs
-                      Positioned.fill(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-                          child: Container(
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ),
-                      // Central container or image
-                      Image.asset(
-                        'assets/images/icon-512.png',
-                        width: 160,
-                        height: 160,
-                      ),
-                    ],
-                  ),
+                child: Image.asset(
+                  'assets/images/icon-512.png',
+                  width: 160,
+                  height: 160,
                 ),
               ),
             ),

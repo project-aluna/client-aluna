@@ -5,6 +5,7 @@ import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_spacing.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/app_card.dart';
 import '../../../data/mock/mock_lifestyle_goals.dart';
 
 /// Choose lifestyle goals screen (Step 2 of Onboarding)
@@ -91,24 +92,13 @@ class _GoalsScreenState extends State<GoalsScreen> {
                           child: InkWell(
                             onTap: () => _toggleSelection(goal.id),
                             borderRadius: BorderRadius.circular(24),
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              padding: const EdgeInsets.all(AppSpacing.s16),
-                              decoration: BoxDecoration(
-                                color: isSelected ? AppColors.sageBreeze.withValues(alpha: 0.1) : Colors.white,
-                                border: Border.all(
-                                  color: isSelected ? AppColors.sageBreeze : Colors.transparent,
-                                  width: 1.5,
-                                ),
-                                borderRadius: BorderRadius.circular(24),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.cocoaInk.withValues(alpha: 0.04),
-                                    blurRadius: 24,
-                                    offset: const Offset(0, 8),
-                                  ),
-                                ],
+                            child: AppCard(
+                              backgroundColor: isSelected ? AppColors.roseClay.withValues(alpha: 0.1) : Colors.white,
+                              border: Border.all(
+                                color: isSelected ? AppColors.roseClay : Colors.transparent,
+                                width: 1.5,
                               ),
+                              padding: const EdgeInsets.all(AppSpacing.s20),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -121,8 +111,8 @@ class _GoalsScreenState extends State<GoalsScreen> {
                                     ),
                                   ),
                                   Icon(
-                                    LucideIcons.checkCircle2,
-                                    color: isSelected ? AppColors.sageBreeze : AppColors.cocoaInk.withValues(alpha: 0.2),
+                                    isSelected ? LucideIcons.checkCircle2 : LucideIcons.circle,
+                                    color: isSelected ? AppColors.roseClay : AppColors.cocoaInk.withValues(alpha: 0.2),
                                     size: 24,
                                   ),
                                 ],

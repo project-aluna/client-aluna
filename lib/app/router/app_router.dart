@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'route_names.dart';
 
-import '../../features/splash/presentation/splash_screen.dart';
+// Removed splash screen import
 import '../../features/onboarding/presentation/welcome_screen.dart';
 import '../../features/onboarding/presentation/goals_screen.dart';
 import '../../features/onboarding/presentation/routines_screen.dart';
@@ -14,11 +14,6 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: AppRouteNames.splash,
-      builder: (context, state) => const SplashScreen(),
-    ),
-    GoRoute(
-      path: '/welcome',
       name: AppRouteNames.welcome,
       builder: (context, state) => const WelcomeScreen(),
     ),
