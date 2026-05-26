@@ -6,8 +6,10 @@ class AppRouteNames {
   
   // Onboarding
   static const String onboardingGoals = 'onboarding-goals';
+  static const String onboardingRoutines = 'onboarding-routines';
   static const String onboardingStarterRoutine = 'onboarding-starter-routine';
   static const String onboardingReminder = 'onboarding-reminder';
+  static const String onboardingGenerate = 'onboarding-generate';
 
   // Shell Tabs
   static const String today = 'today';
@@ -22,4 +24,7 @@ class AppRouteNames {
   static const String reminders = 'reminders';
   static const String subscription = 'subscription';
   static const String settings = 'settings';
+
+  // Dev
+  static const String showcase = 'showcase';
 }

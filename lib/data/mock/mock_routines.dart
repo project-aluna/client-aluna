@@ -1,1 +1,81 @@
-class MockRoutines {}
+import '../models/routine_model.dart';
+import '../models/routine_step_model.dart';
+
+class MockRoutines {
+  static final List<RoutineModel> routines = [
+    const RoutineModel(
+      id: 'routine_001',
+      categoryId: 'cat_001',
+      name: 'Soft Morning',
+      description: 'Mulai hari dengan lembut dan penuh kesadaran',
+      icon: 'sunrise',
+      color: '#F3B58A',
+      estimatedDurationMinutes: 15,
+      scheduleType: 'daily',
+      startTime: '06:00',
+      isActive: true,
+      stepsCount: 3,
+      steps: [
+        RoutineStepModel(id: 'step_001', title: 'Minum air hangat', icon: 'droplet', estimatedDurationMinutes: 2, sortOrder: 1),
+        RoutineStepModel(id: 'step_002', title: 'Peregangan ringan', icon: 'stretch', estimatedDurationMinutes: 5, sortOrder: 2),
+        RoutineStepModel(id: 'step_003', title: 'Journaling 3 menit', icon: 'pen', estimatedDurationMinutes: 3, sortOrder: 3),
+      ],
+    ),
+    const RoutineModel(
+      id: 'routine_002',
+      categoryId: 'cat_002',
+      name: 'Night Reset',
+      description: 'Tutup hari dengan tenang dan damai',
+      icon: 'moon',
+      color: '#C9BFD8',
+      estimatedDurationMinutes: 20,
+      scheduleType: 'daily',
+      startTime: '21:30',
+      isActive: true,
+      stepsCount: 4,
+      steps: [
+        RoutineStepModel(id: 'step_004', title: 'Matikan layar', icon: 'monitor-off', estimatedDurationMinutes: 1, sortOrder: 1),
+        RoutineStepModel(id: 'step_005', title: 'Cuci muka', icon: 'sparkle', estimatedDurationMinutes: 3, sortOrder: 2),
+        RoutineStepModel(id: 'step_006', title: 'Baca buku 10 menit', icon: 'book', estimatedDurationMinutes: 10, sortOrder: 3),
+        RoutineStepModel(id: 'step_007', title: 'Atur alarm', icon: 'alarm-clock', estimatedDurationMinutes: 1, sortOrder: 4),
+      ],
+    ),
+    const RoutineModel(
+      id: 'routine_003',
+      categoryId: 'cat_003',
+      name: 'Skincare Routine',
+      description: 'Rawat kulitmu setiap hari',
+      icon: 'sparkle',
+      color: '#D98F8F',
+      estimatedDurationMinutes: 10,
+      scheduleType: 'daily',
+      startTime: '07:00',
+      isActive: true,
+      stepsCount: 3,
+      steps: [
+        RoutineStepModel(id: 'step_008', title: 'Cleanser', icon: 'droplet', estimatedDurationMinutes: 2, sortOrder: 1),
+        RoutineStepModel(id: 'step_009', title: 'Toner', icon: 'droplet', estimatedDurationMinutes: 2, sortOrder: 2),
+        RoutineStepModel(id: 'step_010', title: 'Moisturizer + SPF', icon: 'sun', estimatedDurationMinutes: 2, sortOrder: 3),
+      ],
+    ),
+    const RoutineModel(
+      id: 'routine_004',
+      categoryId: 'cat_001',
+      name: 'Sunday Reset',
+      description: 'Persiapkan minggu yang lebih baik',
+      icon: 'refresh-cw',
+      color: '#9DB8A5',
+      estimatedDurationMinutes: 30,
+      scheduleType: 'custom',
+      startTime: '10:00',
+      isActive: true,
+      stepsCount: 3,
+      scheduleDays: ['sunday'],
+      steps: [
+        RoutineStepModel(id: 'step_011', title: 'Review minggu lalu', icon: 'clipboard', estimatedDurationMinutes: 10, sortOrder: 1),
+        RoutineStepModel(id: 'step_012', title: 'Bersih-bersih kamar', icon: 'home', estimatedDurationMinutes: 15, sortOrder: 2),
+        RoutineStepModel(id: 'step_013', title: 'Plan minggu ini', icon: 'calendar', estimatedDurationMinutes: 5, sortOrder: 3),
+      ],
+    ),
+  ];
+}

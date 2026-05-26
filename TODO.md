@@ -313,16 +313,16 @@ Radius:
 
 ## 7.1 Create Mock Models
 
-* [ ] User mock
-* [ ] Lifestyle goals mock
-* [ ] Routine categories mock
-* [ ] Routines mock
-* [ ] Routine steps mock
-* [ ] Daily flow mock
-* [ ] Mood logs mock
-* [ ] Weekly reflection mock
-* [ ] Plans mock
-* [ ] Reminders mock
+* [x] User mock
+* [x] Lifestyle goals mock
+* [x] Routine categories mock
+* [x] Routines mock
+* [x] Routine steps mock
+* [x] Daily flow mock
+* [x] Mood logs mock
+* [x] Weekly reflection mock
+* [x] Plans mock
+* [x] Reminders mock
 
 ---
 
@@ -336,14 +336,14 @@ Mock Repository → API Repository later
 
 Repositories:
 
-* [ ] AuthRepository
-* [ ] UserRepository
-* [ ] RoutineRepository
-* [ ] DailyFlowRepository
-* [ ] MoodRepository
-* [ ] ReflectionRepository
-* [ ] ReminderRepository
-* [ ] SubscriptionRepository
+* [x] AuthRepository
+* [x] UserRepository
+* [x] RoutineRepository
+* [x] DailyFlowRepository
+* [x] MoodRepository
+* [x] ReflectionRepository
+* [x] ReminderRepository
+* [x] SubscriptionRepository
 
 ---
 
@@ -351,11 +351,11 @@ Repositories:
 
 ## 8.1 App Routes
 
-* [ ] Splash
-* [ ] Welcome
-* [ ] Onboarding Goals
-* [ ] Onboarding Starter Routine
-* [ ] Onboarding Reminder
+* [x] Splash
+* [x] Welcome
+* [x] Onboarding Goals
+* [x] Onboarding Starter Routine
+* [x] Onboarding Reminder
 * [ ] Main Shell
 * [ ] Today
 * [ ] Routines
@@ -391,11 +391,11 @@ Rules:
 
 ## 9.1 Splash Screen
 
-* [ ] Show Aluna symbol
-* [ ] Soft gradient background
-* [ ] Gentle fade animation
-* [ ] Check auth/onboarding mock state
-* [ ] Navigate to Welcome or Today
+* [x] Show Aluna symbol
+* [x] Soft gradient background
+* [x] Gentle fade animation
+* [x] Check auth/onboarding mock state
+* [x] Navigate to Welcome or Today
 
 ---
 
@@ -403,10 +403,10 @@ Rules:
 
 Content:
 
-* [ ] Logo
-* [ ] Main headline
-* [ ] Supporting copy
-* [ ] Primary CTA
+* [x] Logo
+* [x] Main headline
+* [x] Supporting copy
+* [x] Primary CTA
 * [ ] Secondary login CTA
 
 Suggested headline:
@@ -423,21 +423,21 @@ Suggested subcopy:
 
 ## 10.1 Goals Screen
 
-* [ ] Render lifestyle goal cards
-* [ ] Select max 3 goals
-* [ ] Add soft selected state
-* [ ] Continue button disabled until selected
-* [ ] Save selected goals locally
+* [x] Render lifestyle goal cards
+* [x] Select max 3 goals
+* [x] Add soft selected state
+* [x] Continue button disabled until selected
+* [x] Save selected goals locally
 
 ---
 
 ## 10.2 Starter Routine Screen
 
-* [ ] Show suggested routine templates
-* [ ] Allow choose one starter routine
-* [ ] Allow edit starter routine name
-* [ ] Preview routine steps
-* [ ] Continue to reminder setup
+* [x] Show suggested routine templates
+* [x] Allow choose one starter routine
+* [x] Allow edit starter routine name
+* [x] Preview routine steps
+* [x] Continue to reminder setup
 
 Starter templates:
 
@@ -450,12 +450,12 @@ Starter templates:
 
 ## 10.3 Reminder Setup Screen
 
-* [ ] Time picker
-* [ ] Reminder toggle
-* [ ] Gentle reminder copy
-* [ ] Complete onboarding CTA
-* [ ] Generate mock Daily Flow
-* [ ] Navigate to Today
+* [x] Time picker
+* [x] Reminder toggle
+* [x] Gentle reminder copy
+* [x] Complete onboarding CTA
+* [x] Generate mock Daily Flow
+* [x] Navigate to Today
 
 ---
 

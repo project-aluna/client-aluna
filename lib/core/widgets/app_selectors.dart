@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_radius.dart';
+
 import '../../app/theme/app_spacing.dart';
 import '../../app/theme/app_typography.dart';
 
@@ -94,7 +93,7 @@ class MoodSelector extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                transform: isSelected ? (Matrix4.identity()..scale(1.15)) : Matrix4.identity(),
+                transform: isSelected ? (Matrix4.identity()..scale(1.15, 1.15, 1.15)) : Matrix4.identity(),
                 child: Text(
                   option['emoji']!,
                   style: const TextStyle(fontSize: 28),
@@ -116,8 +115,8 @@ class MoodSelector extends StatelessWidget {
   }
 }
 
-/// Selector for energy using 5 lightning levels.
-class EnergySelector extends StatelessWidget {
+/// Selector for energy level using a Slider (1-5).
+class EnergySelector extends StatefulWidget {
   final int selectedLevel; // 1 to 5
   final ValueChanged<int> onSelected;
 
@@ -128,36 +127,105 @@ class EnergySelector extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(5, (index) {
-        final level = index + 1;
-        final isSelected = selectedLevel == level;
+  State<EnergySelector> createState() => _EnergySelectorState();
+}
 
-        return GestureDetector(
-          onTap: () => onSelected(level),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.all(AppSpacing.s12),
-            decoration: BoxDecoration(
-              color: isSelected ? AppColors.peachGlow : AppColors.butterCream,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              LucideIcons.zap,
-              color: isSelected ? Colors.white : AppColors.cocoaInk.withValues(alpha: 0.3),
-              size: 24,
-            ),
+class _EnergySelectorState extends State<EnergySelector> {
+  late double _currentValue;
+
+  static const List<Map<String, String>> _energyOptions = [
+    {'emoji': '😴', 'label': 'Sangat Lelah'},
+    {'emoji': '🥱', 'label': 'Lelah'},
+    {'emoji': '😐', 'label': 'Biasa Saja'},
+    {'emoji': '💪', 'label': 'Berenergi'},
+    {'emoji': '⚡', 'label': 'Sangat Berenergi'},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _currentValue = widget.selectedLevel.toDouble();
+  }
+
+  @override
+  void didUpdateWidget(covariant EnergySelector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedLevel != widget.selectedLevel) {
+      _currentValue = widget.selectedLevel.toDouble();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final index = _currentValue.round() - 1;
+    final option = _energyOptions[index.clamp(0, 4)];
+
+    return Column(
+      children: [
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Row(
+            key: ValueKey(index),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                option['emoji']!,
+                style: const TextStyle(fontSize: 32),
+              ),
+              const SizedBox(width: AppSpacing.s8),
+              Text(
+                option['label']!,
+                style: AppTypography.body.copyWith(
+                  color: AppColors.cocoaInk,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
-        );
-      }),
+        ),
+        const SizedBox(height: AppSpacing.s8),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            activeTrackColor: AppColors.peachGlow,
+            inactiveTrackColor: AppColors.peachGlow.withValues(alpha: 0.2),
+            thumbColor: AppColors.peachGlow,
+            overlayColor: AppColors.peachGlow.withValues(alpha: 0.15),
+            trackHeight: 6,
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
+          ),
+          child: Slider(
+            value: _currentValue,
+            min: 1,
+            max: 5,
+            divisions: 4,
+            onChanged: (value) {
+              setState(() {
+                _currentValue = value;
+              });
+              widget.onSelected(value.round());
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('1', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('2', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('3', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('4', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('5', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
 
-/// Selector for stress using 5 levels.
-class StressSelector extends StatelessWidget {
+/// Selector for stress level using a Slider (1-5).
+class StressSelector extends StatefulWidget {
   final int selectedLevel; // 1 to 5
   final ValueChanged<int> onSelected;
 
@@ -168,30 +236,99 @@ class StressSelector extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(5, (index) {
-        final level = index + 1;
-        final isSelected = selectedLevel == level;
+  State<StressSelector> createState() => _StressSelectorState();
+}
 
-        return GestureDetector(
-          onTap: () => onSelected(level),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.all(AppSpacing.s12),
-            decoration: BoxDecoration(
-              color: isSelected ? AppColors.roseClay : AppColors.butterCream,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              LucideIcons.alertCircle,
-              color: isSelected ? Colors.white : AppColors.cocoaInk.withValues(alpha: 0.3),
-              size: 24,
-            ),
+class _StressSelectorState extends State<StressSelector> {
+  late double _currentValue;
+
+  static const List<Map<String, String>> _stressOptions = [
+    {'emoji': '😌', 'label': 'Sangat Tenang'},
+    {'emoji': '🙂', 'label': 'Tenang'},
+    {'emoji': '😐', 'label': 'Biasa Saja'},
+    {'emoji': '😟', 'label': 'Stres'},
+    {'emoji': '😰', 'label': 'Sangat Stres'},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _currentValue = widget.selectedLevel.toDouble();
+  }
+
+  @override
+  void didUpdateWidget(covariant StressSelector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedLevel != widget.selectedLevel) {
+      _currentValue = widget.selectedLevel.toDouble();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final index = _currentValue.round() - 1;
+    final option = _stressOptions[index.clamp(0, 4)];
+
+    return Column(
+      children: [
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Row(
+            key: ValueKey(index),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                option['emoji']!,
+                style: const TextStyle(fontSize: 32),
+              ),
+              const SizedBox(width: AppSpacing.s8),
+              Text(
+                option['label']!,
+                style: AppTypography.body.copyWith(
+                  color: AppColors.cocoaInk,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
-        );
-      }),
+        ),
+        const SizedBox(height: AppSpacing.s8),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            activeTrackColor: AppColors.roseClay,
+            inactiveTrackColor: AppColors.roseClay.withValues(alpha: 0.2),
+            thumbColor: AppColors.roseClay,
+            overlayColor: AppColors.roseClay.withValues(alpha: 0.15),
+            trackHeight: 6,
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
+          ),
+          child: Slider(
+            value: _currentValue,
+            min: 1,
+            max: 5,
+            divisions: 4,
+            onChanged: (value) {
+              setState(() {
+                _currentValue = value;
+              });
+              widget.onSelected(value.round());
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('1', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('2', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('3', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('4', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+              Text('5', style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.4))),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

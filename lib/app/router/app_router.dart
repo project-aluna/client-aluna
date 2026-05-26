@@ -5,7 +5,7 @@ import 'route_names.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_radius.dart';
-import '../theme/app_shadows.dart';
+
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/app_text_field.dart';
 import '../../core/widgets/app_card.dart';
@@ -14,13 +14,49 @@ import '../../core/widgets/app_loading.dart';
 import '../../core/widgets/app_empty_state.dart';
 import '../../core/widgets/app_error_view.dart';
 import '../../core/widgets/app_feedback.dart';
+import '../../features/splash/presentation/splash_screen.dart';
+import '../../features/onboarding/presentation/welcome_screen.dart';
+import '../../features/onboarding/presentation/goals_screen.dart';
+import '../../features/onboarding/presentation/routines_screen.dart';
+import '../../features/onboarding/presentation/reminder_screen.dart';
+import '../../features/onboarding/presentation/generate_flow_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
-      name: AppRouteNames.today,
+      name: AppRouteNames.splash,
+      builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/welcome',
+      name: AppRouteNames.welcome,
+      builder: (context, state) => const WelcomeScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/goals',
+      name: AppRouteNames.onboardingGoals,
+      builder: (context, state) => const GoalsScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/routines',
+      name: AppRouteNames.onboardingRoutines,
+      builder: (context, state) => const RoutinesScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/reminder',
+      name: AppRouteNames.onboardingReminder,
+      builder: (context, state) => const ReminderScreen(),
+    ),
+    GoRoute(
+      path: '/onboarding/generate',
+      name: AppRouteNames.onboardingGenerate,
+      builder: (context, state) => const GenerateFlowScreen(),
+    ),
+    GoRoute(
+      path: '/showcase',
+      name: AppRouteNames.showcase,
       builder: (context, state) => const DesignSystemShowcaseScreen(),
     ),
   ],
