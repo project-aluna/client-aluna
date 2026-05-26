@@ -19,25 +19,6 @@ class _GoalsScreenState extends State<GoalsScreen> {
   final List<String> _selectedIds = [];
   final int _maxSelection = 3;
 
-  IconData _getIconForString(String iconName) {
-    switch (iconName) {
-      case 'moon':
-        return LucideIcons.moon;
-      case 'heart':
-        return LucideIcons.heart;
-      case 'compass':
-        return LucideIcons.compass;
-      case 'dumbbell':
-        return LucideIcons.dumbbell;
-      case 'sparkles':
-        return LucideIcons.sparkles;
-      case 'sparkle':
-        return LucideIcons.sparkle;
-      default:
-        return LucideIcons.target;
-    }
-  }
-
   void _toggleSelection(String id) {
     setState(() {
       if (_selectedIds.contains(id)) {
@@ -50,6 +31,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
             SnackBar(
               content: Text('Maksimal memilih $_maxSelection tujuan'),
               behavior: SnackBarBehavior.floating,
+              backgroundColor: AppColors.cocoaInk,
             ),
           );
         }
@@ -63,112 +45,158 @@ class _GoalsScreenState extends State<GoalsScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.butterCream,
-      appBar: AppBar(
-        title: const Text('Pilih Tujuanmu'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.s24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Apa yang ingin kamu capai?',
-                style: AppTypography.heading.copyWith(
-                  color: AppColors.cocoaInk,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s8),
-              Text(
-                'Pilih maksimal $_maxSelection tujuan yang paling relevan untukmu.',
-                style: AppTypography.body.copyWith(
-                  color: AppColors.cocoaInk.withValues(alpha: 0.6),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s24),
-
-              Expanded(
-                child: ListView.separated(
-                  itemCount: goals.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.s12),
-                  itemBuilder: (context, index) {
-                    final goal = goals[index];
-                    final isSelected = _selectedIds.contains(goal.id);
-
-                    return InkWell(
-                      onTap: () => _toggleSelection(goal.id),
-                      borderRadius: BorderRadius.circular(16),
-                      child: Container(
-                        padding: const EdgeInsets.all(AppSpacing.s16),
-                        decoration: BoxDecoration(
-                          color: isSelected ? AppColors.roseClay.withValues(alpha: 0.1) : Colors.white,
-                          border: Border.all(
-                            color: isSelected ? AppColors.roseClay : AppColors.cocoaInk.withValues(alpha: 0.1),
-                            width: isSelected ? 2 : 1,
+        child: Stack(
+          children: [
+            // Main Content
+            CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s32, AppSpacing.s20, AppSpacing.s32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Apa yang ingin kamu fokuskan?',
+                          textAlign: TextAlign.center,
+                          style: AppTypography.display.copyWith(
+                            color: AppColors.cocoaInk,
+                            fontSize: 32,
+                            height: 1.2,
                           ),
-                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
+                        const SizedBox(height: AppSpacing.s8),
+                        Text(
+                          'Pilih hingga $_maxSelection hal yang paling penting bagimu saat ini.',
+                          textAlign: TextAlign.center,
+                          style: AppTypography.body.copyWith(
+                            color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(AppSpacing.s20, 0, AppSpacing.s20, 140),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final goal = goals[index];
+                        final isSelected = _selectedIds.contains(goal.id);
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: AppSpacing.s16),
+                          child: InkWell(
+                            onTap: () => _toggleSelection(goal.id),
+                            borderRadius: BorderRadius.circular(24),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              padding: const EdgeInsets.all(AppSpacing.s16),
                               decoration: BoxDecoration(
-                                color: isSelected ? AppColors.roseClay : AppColors.butterCream,
-                                shape: BoxShape.circle,
+                                color: isSelected ? AppColors.sageBreeze.withValues(alpha: 0.1) : Colors.white,
+                                border: Border.all(
+                                  color: isSelected ? AppColors.sageBreeze : Colors.transparent,
+                                  width: 1.5,
+                                ),
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.cocoaInk.withValues(alpha: 0.04),
+                                    blurRadius: 24,
+                                    offset: const Offset(0, 8),
+                                  ),
+                                ],
                               ),
-                              child: Icon(
-                                _getIconForString(goal.icon),
-                                color: isSelected ? Colors.white : AppColors.cocoaInk,
-                                size: 24,
-                              ),
-                            ),
-                            const SizedBox(width: AppSpacing.s16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    goal.name,
-                                    style: AppTypography.body.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.cocoaInk,
+                                  Expanded(
+                                    child: Text(
+                                      goal.name,
+                                      style: AppTypography.subheading.copyWith(
+                                        color: AppColors.cocoaInk,
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    goal.description,
-                                    style: AppTypography.body.copyWith(
-                                      fontSize: 12,
-                                      color: AppColors.cocoaInk.withValues(alpha: 0.6),
-                                    ),
+                                  Icon(
+                                    LucideIcons.checkCircle2,
+                                    color: isSelected ? AppColors.sageBreeze : AppColors.cocoaInk.withValues(alpha: 0.2),
+                                    size: 24,
                                   ),
                                 ],
                               ),
                             ),
-                            if (isSelected)
-                              const Icon(LucideIcons.checkCircle2, color: AppColors.roseClay),
-                          ],
-                        ),
+                          ),
+                        );
+                      },
+                      childCount: goals.length,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            
+            // Sticky Bottom Area
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s32, AppSpacing.s20, AppSpacing.s24),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.butterCream.withValues(alpha: 0.0),
+                      AppColors.butterCream,
+                      AppColors.butterCream,
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Progress Indicator (Dots)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildDot(false),
+                        const SizedBox(width: 8),
+                        _buildDot(true),
+                        const SizedBox(width: 8),
+                        _buildDot(false),
+                        const SizedBox(width: 8),
+                        _buildDot(false),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.s24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: AppButton(
+                        text: 'Lanjut',
+                        isDisabled: _selectedIds.isEmpty,
+                        onPressed: () => context.go('/onboarding/routines'),
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
-
-              const SizedBox(height: AppSpacing.s16),
-              SizedBox(
-                width: double.infinity,
-                child: AppButton(
-                  text: 'Lanjut',
-                  isDisabled: _selectedIds.isEmpty,
-                  onPressed: () => context.go('/onboarding/routines'),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildDot(bool isActive) {
+    return Container(
+      width: 8,
+      height: 8,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow,
       ),
     );
   }

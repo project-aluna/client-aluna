@@ -5,7 +5,7 @@ class AppTypography {
   AppTypography._();
 
   // Primary Font Families
-  static TextStyle get headingFont => GoogleFonts.instrumentSerif();
+  static TextStyle get headingFont => GoogleFonts.outfit();
   static TextStyle get bodyFont => GoogleFonts.plusJakartaSans();
 
   // Type Scale Properties

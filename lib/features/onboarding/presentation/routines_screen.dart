@@ -45,112 +45,195 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.butterCream,
-      appBar: AppBar(
-        title: const Text('Pilih Rutinitas'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.s24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Pilih rutinitas pertamamu',
-                style: AppTypography.heading.copyWith(
-                  color: AppColors.cocoaInk,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s8),
-              Text(
-                'Kamu bisa mulai dengan salah satu template berikut.',
-                style: AppTypography.body.copyWith(
-                  color: AppColors.cocoaInk.withValues(alpha: 0.6),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s24),
-
-              Expanded(
-                child: ListView.separated(
-                  itemCount: routines.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.s12),
-                  itemBuilder: (context, index) {
-                    final routine = routines[index];
-                    final isSelected = _selectedRoutineId == routine.id;
-
-                    return InkWell(
-                      onTap: () => _selectRoutine(routine.id),
-                      borderRadius: BorderRadius.circular(16),
-                      child: Container(
-                        padding: const EdgeInsets.all(AppSpacing.s16),
-                        decoration: BoxDecoration(
-                          color: isSelected ? AppColors.roseClay.withValues(alpha: 0.1) : Colors.white,
-                          border: Border.all(
-                            color: isSelected ? AppColors.roseClay : AppColors.cocoaInk.withValues(alpha: 0.1),
-                            width: isSelected ? 2 : 1,
+        child: Stack(
+          children: [
+            // Main Content
+            CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s16, AppSpacing.s20, AppSpacing.s32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Back Button
+                        IconButton(
+                          icon: const Icon(LucideIcons.arrowLeft, color: AppColors.cocoaInk),
+                          onPressed: () => context.pop(),
+                          style: IconButton.styleFrom(
+                            backgroundColor: AppColors.peachGlow.withValues(alpha: 0.3),
                           ),
-                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
+                        const SizedBox(height: AppSpacing.s24),
+                        Text(
+                          'Pilih titik awalmu.',
+                          style: AppTypography.display.copyWith(
+                            color: AppColors.cocoaInk,
+                            fontSize: 32,
+                            height: 1.2,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.s8),
+                        Text(
+                          'Kita mulai dari satu rutinitas yang paling kamu butuhkan.',
+                          style: AppTypography.body.copyWith(
+                            color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(AppSpacing.s20, 0, AppSpacing.s20, 140),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final routine = routines[index];
+                        final isSelected = _selectedRoutineId == routine.id;
+
+                        // Descriptive text map based on id (since mock data doesn't have good desc)
+                        String desc = 'Membangun energi dan fokus untuk memulai hari dengan tenang.';
+                        if (routine.id == 'night-wind-down') {
+                          desc = 'Melepaskan beban hari ini untuk kualitas tidur yang lebih baik.';
+                        } else if (routine.id == 'midday-pause') {
+                          desc = 'Jeda sejenak di tengah kesibukan untuk meredakan stres.';
+                        }
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: AppSpacing.s16),
+                          child: InkWell(
+                            onTap: () => _selectRoutine(routine.id),
+                            borderRadius: BorderRadius.circular(24),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              padding: const EdgeInsets.all(AppSpacing.s16),
                               decoration: BoxDecoration(
-                                color: isSelected ? AppColors.roseClay : AppColors.butterCream,
-                                shape: BoxShape.circle,
+                                color: isSelected ? AppColors.sageBreeze.withValues(alpha: 0.2) : Colors.white,
+                                border: Border.all(
+                                  color: isSelected ? AppColors.sageBreeze : AppColors.peachGlow,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.cocoaInk.withValues(alpha: 0.02),
+                                    blurRadius: 24,
+                                    offset: const Offset(0, 8),
+                                  ),
+                                ],
                               ),
-                              child: Icon(
-                                _getIconForString(routine.icon),
-                                color: isSelected ? Colors.white : AppColors.cocoaInk,
-                                size: 24,
-                              ),
-                            ),
-                            const SizedBox(width: AppSpacing.s16),
-                            Expanded(
-                              child: Column(
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    routine.name,
-                                    style: AppTypography.body.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.cocoaInk,
+                                  AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: isSelected ? AppColors.sageBreeze : AppColors.butterCream,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      _getIconForString(routine.icon),
+                                      color: isSelected ? Colors.white : AppColors.cocoaInk,
+                                      size: 24,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    '${routine.stepsCount} langkah • ${routine.estimatedDurationMinutes} mnt',
-                                    style: AppTypography.body.copyWith(
-                                      fontSize: 12,
-                                      color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                                  const SizedBox(width: AppSpacing.s16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          routine.name,
+                                          style: AppTypography.subheading.copyWith(
+                                            color: AppColors.cocoaInk,
+                                            height: 1.2,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          desc,
+                                          style: AppTypography.caption.copyWith(
+                                            color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            if (isSelected)
-                              const Icon(LucideIcons.checkCircle2, color: AppColors.roseClay),
-                          ],
-                        ),
+                          ),
+                        );
+                      },
+                      childCount: routines.length,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            
+            // Sticky Bottom Area
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s32, AppSpacing.s20, AppSpacing.s24),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.butterCream.withValues(alpha: 0.0),
+                      AppColors.butterCream.withValues(alpha: 0.9),
+                      AppColors.butterCream,
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Progress Indicator (Lines)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildLineDot(false),
+                        const SizedBox(width: 8),
+                        _buildLineDot(false),
+                        const SizedBox(width: 8),
+                        _buildLineDot(true),
+                        const SizedBox(width: 8),
+                        _buildLineDot(false),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.s24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: AppButton(
+                        text: 'Lanjut',
+                        isDisabled: _selectedRoutineId == null,
+                        onPressed: () => context.go('/onboarding/reminder'),
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
-
-              const SizedBox(height: AppSpacing.s16),
-              SizedBox(
-                width: double.infinity,
-                child: AppButton(
-                  text: 'Lanjut',
-                  isDisabled: _selectedRoutineId == null,
-                  onPressed: () => context.go('/onboarding/reminder'),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildLineDot(bool isActive) {
+    return Container(
+      width: 40,
+      height: 4,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow,
       ),
     );
   }

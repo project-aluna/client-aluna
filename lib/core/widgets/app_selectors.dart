@@ -93,7 +93,7 @@ class MoodSelector extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                transform: isSelected ? (Matrix4.identity()..scale(1.15, 1.15, 1.15)) : Matrix4.identity(),
+                transform: isSelected ? Matrix4.diagonal3Values(1.15, 1.15, 1.15) : Matrix4.identity(),
                 child: Text(
                   option['emoji']!,
                   style: const TextStyle(fontSize: 28),
