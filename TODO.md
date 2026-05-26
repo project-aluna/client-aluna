@@ -169,19 +169,19 @@ Create tokens from revamped `design.md`.
 
 Primary colors:
 
-* [ ] Rose Clay `#D98F8F`
-* [ ] Peach Glow `#F3B58A`
-* [ ] Butter Cream `#FFF4E6`
-* [ ] Lavender Mist `#B7A6E6`
-* [ ] Sage Breeze `#9DB8A5`
-* [ ] Sky Powder `#BFD7EA`
-* [ ] Cocoa Ink `#3C2F2F`
+* [x] Rose Clay `#D98F8F`
+* [x] Peach Glow `#F3B58A`
+* [x] Butter Cream `#FFF4E6`
+* [x] Lavender Mist `#B7A6E6`
+* [x] Sage Breeze `#9DB8A5`
+* [x] Sky Powder `#BFD7EA`
+* [x] Cocoa Ink `#3C2F2F`
 
 Dark mode colors:
 
-* [ ] Night Background `#241C24`
-* [ ] Night Surface `#32263A`
-* [ ] Night Text `#F7EDE2`
+* [x] Night Background `#241C24`
+* [x] Night Surface `#32263A`
+* [x] Night Text `#F7EDE2`
 
 ---
 
@@ -189,10 +189,10 @@ Dark mode colors:
 
 Create reusable gradients:
 
-* [ ] Morning Glow: `#FFF4E6 → #F3B58A`
-* [ ] Calm Evening: `#B7A6E6 → #D98F8F`
-* [ ] Sky Calm: `#BFD7EA → #FFF4E6`
-* [ ] Soft Wellness: `#9DB8A5 → #FFF4E6`
+* [x] Morning Glow: `#FFF4E6 → #F3B58A`
+* [x] Calm Evening: `#B7A6E6 → #D98F8F`
+* [x] Sky Calm: `#BFD7EA → #FFF4E6`
+* [x] Soft Wellness: `#9DB8A5 → #FFF4E6`
 
 ---
 
@@ -200,17 +200,17 @@ Create reusable gradients:
 
 Use:
 
-* [ ] Heading: Instrument Serif / Lora fallback
-* [ ] Body: Plus Jakarta Sans / Inter fallback
+* [x] Heading: Instrument Serif / Lora fallback
+* [x] Body: Plus Jakarta Sans / Inter fallback
 
 Type scale:
 
-* [ ] Display
-* [ ] Heading
-* [ ] Subheading
-* [ ] Body
-* [ ] Caption
-* [ ] Tiny label
+* [x] Display
+* [x] Heading
+* [x] Subheading
+* [x] Body
+* [x] Caption
+* [x] Tiny label
 
 ---
 
@@ -218,34 +218,34 @@ Type scale:
 
 Spacing:
 
-* [ ] 4
-* [ ] 8
-* [ ] 12
-* [ ] 16
-* [ ] 20
-* [ ] 24
-* [ ] 32
-* [ ] 40
-* [ ] 48
+* [x] 4
+* [x] 8
+* [x] 12
+* [x] 16
+* [x] 20
+* [x] 24
+* [x] 32
+* [x] 40
+* [x] 48
 
 Radius:
 
-* [ ] small: 12
-* [ ] input: 16
-* [ ] card: 24
-* [ ] modal: 32
-* [ ] pill: 999
+* [x] small: 12
+* [x] input: 16
+* [x] card: 24
+* [x] modal: 32
+* [x] pill: 999
 
 ---
 
 ## 5.5 Shadows & Surfaces
 
-* [ ] Soft card shadow
-* [ ] Floating button shadow
-* [ ] Subtle glow shadow
-* [ ] Tinted surface style
-* [ ] Gradient surface style
-* [ ] Dark mode surface style
+* [x] Soft card shadow
+* [x] Floating button shadow
+* [x] Subtle glow shadow
+* [x] Tinted surface style
+* [x] Gradient surface style
+* [x] Dark mode surface style
 
 ---
 
