@@ -46,13 +46,13 @@ Fokus awal frontend:
 
 - [x] Create frontend repo
 - [x] Init Flutter project
-- [ ] Set app name: Aluna
-- [ ] Set bundle id / package name
-- [ ] Setup Android config
-- [ ] Setup iOS config
-- [ ] Setup minimum SDK
-- [ ] Setup app launcher icon placeholder
-- [ ] Setup splash screen placeholder
+- [x] Set app name: Aluna
+- [x] Set bundle id / package name
+- [x] Setup Android config
+- [x] Setup iOS config
+- [x] Setup minimum SDK
+- [x] Setup app launcher icon placeholder
+- [x] Setup splash screen placeholder
 
 ---
 
@@ -60,28 +60,28 @@ Fokus awal frontend:
 
 Install:
 
-- [ ] flutter_riverpod
-- [ ] go_router
-- [ ] dio
-- [ ] hive
-- [ ] hive_flutter
-- [ ] flutter_local_notifications
-- [ ] intl
-- [ ] freezed_annotation
-- [ ] json_annotation
-- [ ] phosphor_flutter / lucide_icons
-- [ ] google_fonts
-- [ ] smooth_page_indicator
-- [ ] flutter_svg
-- [ ] shared_preferences
+- [x] flutter_riverpod
+- [x] go_router
+- [x] dio
+- [x] hive
+- [x] hive_flutter
+- [x] flutter_local_notifications
+- [x] intl
+- [x] freezed_annotation
+- [x] json_annotation
+- [x] phosphor_flutter / lucide_icons
+- [x] google_fonts
+- [x] smooth_page_indicator
+- [x] flutter_svg
+- [x] shared_preferences
 
 Dev dependencies:
 
-- [ ] build_runner
-- [ ] freezed
-- [ ] json_serializable
-- [ ] flutter_lints
-- [ ] hive_generator
+- [x] build_runner
+- [x] freezed
+- [x] json_serializable
+- [x] flutter_lints
+- [x] hive_generator
 
 ---
 
