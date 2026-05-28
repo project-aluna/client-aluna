@@ -356,17 +356,17 @@ Repositories:
 * [x] Onboarding Goals
 * [x] Onboarding Starter Routine
 * [x] Onboarding Reminder
-* [ ] Main Shell
-* [ ] Today
-* [ ] Routines
-* [ ] Routine Detail
-* [ ] Routine Builder
-* [ ] Mood Log
-* [ ] Reflection
-* [ ] Reminders
-* [ ] Subscription
-* [ ] Profile
-* [ ] Settings
+* [x] Main Shell
+* [x] Today
+* [x] Routines
+* [x] Routine Detail
+* [x] Routine Builder
+* [x] Mood Log
+* [x] Reflection
+* [x] Reminders
+* [x] Subscription
+* [x] Profile
+* [x] Settings
 
 ---
 
@@ -374,10 +374,10 @@ Repositories:
 
 Tabs:
 
-* [ ] Today
-* [ ] Routines
-* [ ] Reflection
-* [ ] Profile
+* [x] Today
+* [x] Routines
+* [x] Reflection
+* [x] Profile
 
 Rules:
 
