@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../app/theme/app_colors.dart';
@@ -9,17 +10,18 @@ import '../../../app/theme/app_spacing.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../data/models/daily_flow_model.dart';
+import '../../today/presentation/today_screen.dart';
 
-class RoutineDetailScreen extends StatefulWidget {
+class RoutineDetailScreen extends ConsumerStatefulWidget {
   final RoutineFlowModel? routineFlow;
 
   const RoutineDetailScreen({super.key, this.routineFlow});
 
   @override
-  State<RoutineDetailScreen> createState() => _RoutineDetailScreenState();
+  ConsumerState<RoutineDetailScreen> createState() => _RoutineDetailScreenState();
 }
 
-class _RoutineDetailScreenState extends State<RoutineDetailScreen> {
+class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
   late RoutineFlowModel _routine;
 
   @override
@@ -170,7 +172,7 @@ class _RoutineDetailScreenState extends State<RoutineDetailScreen> {
                 child: AppButton(
                   text: 'Selesai',
                   onPressed: () {
-                    // Update state locally or in provider
+                    ref.invalidate(todayFlowProvider);
                     context.pop();
                   },
                 ),
@@ -289,30 +291,60 @@ class _RoutineDetailScreenState extends State<RoutineDetailScreen> {
                       if (isActive)
                         Padding(
                           padding: const EdgeInsets.only(top: AppSpacing.s16),
-                          child: InkWell(
-                            onTap: () => _toggleStep(index),
-                            borderRadius: BorderRadius.circular(100),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: AppColors.roseClay.withValues(alpha: 0.15),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () => _toggleStep(index),
                                 borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(LucideIcons.play, size: 16, color: AppColors.roseClay),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    'Mulai',
-                                    style: AppTypography.caption.copyWith(
-                                      color: AppColors.roseClay,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.roseClay.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(100),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(LucideIcons.play, size: 16, color: AppColors.roseClay),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        'Mulai',
+                                        style: AppTypography.caption.copyWith(
+                                          color: AppColors.roseClay,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: AppSpacing.s12),
+                              InkWell(
+                                onTap: () => _toggleStep(index),
+                                borderRadius: BorderRadius.circular(100),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: AppColors.peachGlow),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(LucideIcons.skipForward, size: 16, color: AppColors.peachGlow),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        'Lewati',
+                                        style: AppTypography.caption.copyWith(
+                                          color: AppColors.peachGlow,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                     ],

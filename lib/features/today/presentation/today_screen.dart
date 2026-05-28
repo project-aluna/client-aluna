@@ -79,6 +79,16 @@ class TodayScreen extends ConsumerWidget {
     final monthName = months[now.month - 1];
     final dateString = '$dayName, ${now.day} $monthName';
 
+    final hour = now.hour;
+    String greeting = 'Halo, pelan-pelan saja hari ini.';
+    if (hour >= 5 && hour < 12) {
+      greeting = 'Pagi. Satu langkah kecil juga berarti.';
+    } else if (hour >= 12 && hour < 18) {
+      greeting = 'Semoga harimu terasa lebih ringan.';
+    } else {
+      greeting = 'Malam tiba. Waktunya istirahat sejenak.';
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s20, vertical: AppSpacing.s16),
       child: Row(
@@ -107,7 +117,7 @@ class TodayScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Halo, pelan-pelan saja hari ini.',
+                        greeting,
                         style: AppTypography.subheading.copyWith(
                           color: AppColors.cocoaInk,
                           height: 1.2,
