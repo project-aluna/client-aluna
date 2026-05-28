@@ -407,7 +407,7 @@ Content:
 * [x] Main headline
 * [x] Supporting copy
 * [x] Primary CTA
-* [ ] Secondary login CTA
+* [x] Secondary login CTA
 
 Suggested headline:
 
@@ -441,10 +441,10 @@ Suggested subcopy:
 
 Starter templates:
 
-* [ ] Soft Morning
-* [ ] Night Reset
-* [ ] Skincare Routine
-* [ ] Sunday Reset
+* [x] Soft Morning
+* [x] Night Reset
+* [x] Skincare Routine
+* [x] Sunday Reset
 
 ---
 
@@ -465,14 +465,14 @@ Starter templates:
 
 Must include:
 
-* [ ] Atmospheric gradient header
-* [ ] Greeting
-* [ ] Date
-* [ ] Emotional headline
-* [ ] Progress summary
-* [ ] Routine timeline
-* [ ] Mood quick log
-* [ ] Reflection teaser
+* [x] Atmospheric gradient header
+* [x] Greeting
+* [x] Date
+* [x] Emotional headline
+* [x] Progress summary
+* [x] Routine timeline
+* [x] Mood quick log
+* [x] Reflection teaser
 
 ---
 
@@ -480,31 +480,31 @@ Must include:
 
 Examples:
 
-* [ ] “hari ini pelan-pelan aja”
-* [ ] “satu langkah kecil juga berarti”
-* [ ] “semoga harimu terasa lebih ringan”
+* [x] “hari ini pelan-pelan aja”
+* [x] “satu langkah kecil juga berarti”
+* [x] “semoga harimu terasa lebih ringan”
 
 ---
 
 ## 11.3 Daily Flow UI
 
-* [ ] Render routine cards by time
-* [ ] Render routine status
-* [ ] Render step checklist
-* [ ] Animate complete interaction
-* [ ] Update progress locally
-* [ ] Handle empty state
+* [x] Render routine cards by time
+* [x] Render routine status
+* [x] Render step checklist
+* [x] Animate complete interaction
+* [x] Update progress locally
+* [x] Handle empty state
 
 ---
 
 ## 11.4 Step Completion
 
-* [ ] Tap step to complete
-* [ ] Tap again to undo
-* [ ] Skip step action
-* [ ] Update local state
-* [ ] Show soft success feedback
-* [ ] Auto-complete routine if all required steps done
+* [x] Tap step to complete
+* [x] Tap again to undo
+* [x] Skip step action
+* [x] Update local state
+* [x] Show soft success feedback
+* [x] Auto-complete routine if all required steps done
 
 ---
 
@@ -517,19 +517,25 @@ Examples:
 * [ ] Show add routine CTA
 * [ ] Show empty state
 * [ ] Show free plan limit warning if 3 routines reached
+* [x] Show active routines
+* [x] Show category filter
+* [x] Show add routine CTA
+* [x] Show empty state
+* [x] Show free plan limit warning if 3 routines reached
 
 ---
 
 ## 12.2 Routine Detail
 
-* [ ] Show routine title
-* [ ] Show category
-* [ ] Show start time
-* [ ] Show schedule days
-* [ ] Show estimated duration
-* [ ] Show steps
-* [ ] Edit routine CTA
-* [ ] Delete routine action
+* [x] Render selected routine
+* [x] Display steps
+* [x] Execute mode toggle
+* [x] Navigate back
+* [x] Show schedule days
+* [x] Show estimated duration
+* [x] Show steps
+* [x] Edit routine CTA
+* [x] Delete routine action
 
 ---
 

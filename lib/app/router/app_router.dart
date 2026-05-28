@@ -11,6 +11,7 @@ import '../../features/onboarding/presentation/generate_flow_screen.dart';
 
 // Shell and Tabs
 import '../../features/shell/presentation/main_shell_screen.dart';
+import '../../data/models/daily_flow_model.dart';
 import '../../features/today/presentation/today_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/reflection/presentation/reflection_screen.dart';
@@ -102,7 +103,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/routine-detail',
       name: AppRouteNames.routineDetail,
-      builder: (context, state) => const RoutineDetailScreen(),
+      builder: (context, state) {
+        final routineFlow = state.extra as RoutineFlowModel?;
+        return RoutineDetailScreen(routineFlow: routineFlow);
+      },
     ),
     GoRoute(
       path: '/routine-builder',

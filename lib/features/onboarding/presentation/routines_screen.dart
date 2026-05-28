@@ -93,13 +93,7 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
                         final routine = routines[index];
                         final isSelected = _selectedRoutineId == routine.id;
 
-                        // Descriptive text map based on id (since mock data doesn't have good desc)
-                        String desc = 'Membangun energi dan fokus untuk memulai hari dengan tenang.';
-                        if (routine.id == 'night-wind-down') {
-                          desc = 'Melepaskan beban hari ini untuk kualitas tidur yang lebih baik.';
-                        } else if (routine.id == 'midday-pause') {
-                          desc = 'Jeda sejenak di tengah kesibukan untuk meredakan stres.';
-                        }
+                        final desc = routine.description;
 
                         return Padding(
                           padding: const EdgeInsets.only(bottom: AppSpacing.s16),
@@ -154,7 +148,7 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
                                         ),
                                         const SizedBox(height: 4),
                                         Text(
-                                          desc,
+                                          desc ?? '',
                                           style: AppTypography.caption.copyWith(
                                             color: AppColors.cocoaInk.withValues(alpha: 0.6),
                                           ),
