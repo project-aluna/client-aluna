@@ -88,7 +88,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                // TODO: Navigate to Login
+                                // context.push('/auth/login');
                               },
                               child: Text(
                                 'Masuk di sini',
