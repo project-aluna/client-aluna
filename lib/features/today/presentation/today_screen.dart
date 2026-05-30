@@ -10,6 +10,7 @@ import '../../../app/theme/app_typography.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../data/models/daily_flow_model.dart';
 import '../../../data/providers/repository_providers.dart';
+import '../../../data/mock/mock_mood.dart';
 
 // Provider for today's flow
 final todayFlowProvider = FutureProvider<DailyFlowModel>((ref) {
@@ -45,7 +46,7 @@ class TodayScreen extends ConsumerWidget {
                     const SizedBox(height: AppSpacing.s32),
                     _buildRoutineTimeline(context, flow),
                     const SizedBox(height: AppSpacing.s32),
-                    _buildMoodLog(),
+                    _buildMoodLog(context),
                     const SizedBox(height: AppSpacing.s32),
                     _buildReflectionTeaser(),
                     const SizedBox(height: 100), // padding for bottom nav
@@ -394,7 +395,57 @@ class TodayScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildMoodLog() {
+  Widget _buildMoodLog(BuildContext context) {
+    if (MockMood.todayMood != null) {
+      return AppCard(
+        backgroundColor: AppColors.peachGlow.withValues(alpha: 0.1),
+        border: Border.all(color: AppColors.peachGlow.withValues(alpha: 0.3)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppSpacing.s8),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: AppColors.peachGlow.withValues(alpha: 0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(LucideIcons.heart, color: AppColors.peachGlow),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.s16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Perasaanmu hari ini',
+                      style: AppTypography.caption.copyWith(color: AppColors.cocoaInk.withValues(alpha: 0.6)),
+                    ),
+                    Text(
+                      MockMood.todayMood!,
+                      style: AppTypography.subheading.copyWith(color: AppColors.cocoaInk),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                icon: const Icon(LucideIcons.edit2, color: AppColors.cocoaInk, size: 20),
+                onPressed: () {
+                  context.pushNamed(AppRouteNames.moodLog).then((_) {
+                    // ignore: invalid_use_of_visible_for_testing_member
+                    (context as Element).markNeedsBuild();
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -404,48 +455,30 @@ class TodayScreen extends ConsumerWidget {
             style: AppTypography.subheading.copyWith(color: AppColors.cocoaInk),
           ),
           const SizedBox(height: AppSpacing.s24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildMoodEmoji('😌', 'Damai', AppColors.sageBreeze),
-              _buildMoodEmoji('🤔', 'Fokus', AppColors.peachGlow),
-              _buildMoodEmoji('😊', 'Senang', AppColors.roseClay),
-              _buildMoodEmoji('🥱', 'Lelah', AppColors.cocoaInk.withValues(alpha: 0.2)),
-            ],
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                context.pushNamed(AppRouteNames.moodLog).then((_) {
+                  // ignore: invalid_use_of_visible_for_testing_member
+                  (context as Element).markNeedsBuild();
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.cocoaInk,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                elevation: 0,
+              ),
+              child: Text(
+                'Catat Mood',
+                style: AppTypography.body.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildMoodEmoji(String emoji, String label, Color color) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(24),
-          child: Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.2),
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              emoji,
-              style: const TextStyle(fontSize: 28),
-            ),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.s8),
-        Text(
-          label,
-          style: AppTypography.caption.copyWith(
-            color: AppColors.cocoaInk.withValues(alpha: 0.6),
-          ),
-        ),
-      ],
     );
   }
   

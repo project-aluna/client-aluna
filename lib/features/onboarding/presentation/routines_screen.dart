@@ -18,21 +18,6 @@ class RoutinesScreen extends StatefulWidget {
 class _RoutinesScreenState extends State<RoutinesScreen> {
   String? _selectedRoutineId;
 
-  IconData _getIconForString(String? iconName) {
-    switch (iconName) {
-      case 'sunrise':
-        return LucideIcons.sunrise;
-      case 'moon':
-        return LucideIcons.moon;
-      case 'sparkle':
-        return LucideIcons.sparkle;
-      case 'refresh-cw':
-        return LucideIcons.refreshCw;
-      default:
-        return LucideIcons.list;
-    }
-  }
-
   void _selectRoutine(String id) {
     setState(() {
       _selectedRoutineId = id;
@@ -128,10 +113,11 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
                                       color: isSelected ? AppColors.sageBreeze : AppColors.butterCream,
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Icon(
-                                      _getIconForString(routine.icon),
+                                    child: Image.asset(
+                                      routine.icon ?? 'assets/icons/sparkle.png',
+                                      width: 24,
+                                      height: 24,
                                       color: isSelected ? Colors.white : AppColors.cocoaInk,
-                                      size: 24,
                                     ),
                                   ),
                                   const SizedBox(width: AppSpacing.s16),
