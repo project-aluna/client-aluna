@@ -208,7 +208,7 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
                       child: AppButton(
                         text: 'Lanjut',
                         isDisabled: _selectedRoutineId == null,
-                        onPressed: () => context.go('/onboarding/reminder'),
+                        onPressed: () => context.push('/onboarding/reminder'),
                       ),
                     ),
                   ],
@@ -222,12 +222,14 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
   }
 
   Widget _buildLineDot(bool isActive) {
-    return Container(
-      width: 40,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutCubic,
+      width: isActive ? 40 : 24,
       height: 4,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow,
+        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow.withValues(alpha: 0.5),
       ),
     );
   }
