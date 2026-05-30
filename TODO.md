@@ -1,9 +1,10 @@
 # TODO.md — Aluna Frontend
 
-Version: 1.0  
-Repo: aluna-frontend  
-Platform: Flutter Mobile App  
-Backend: Separate Repository  
+Version: 2.0
+Repo: aluna-frontend
+Platform: Flutter Mobile App
+Backend: Separate Repository
+Design System: Atmospheric Calm Wellness UI
 Status: Frontend Execution Plan
 
 ---
@@ -14,29 +15,31 @@ Frontend Aluna harus memvalidasi pengalaman utama:
 
 > user membuka app, merasa tenang, melihat Daily Flow, menyelesaikan routine kecil, log mood, dan merasa hidup sedikit lebih manageable.
 
-Fokus awal frontend:
+Fokus utama frontend:
 
-- visual polish
-- onboarding flow
-- Today screen
-- routine builder
-- mood logging
-- weekly reflection UI
-- local mock data dulu
-- API integration belakangan
+* emotional UX
+* atmospheric visuals
+* Today screen retention
+* onboarding comfort
+* screenshot-worthy UI
+* calming interactions
+* soft motion system
+* local mock data terlebih dahulu
+* backend integration belakangan
 
 ---
 
 # 2. Frontend Principles
 
-- mobile-first
-- UI harus terasa calming dan colorful
-- jangan terlihat seperti dashboard kerja
-- core screen harus screenshot-worthy
-- build pakai mock data dulu
-- pisahkan UI, state, repository, dan API client
-- jangan tunggu backend selesai untuk bikin pengalaman frontend
-- backend integration masuk setelah core UX terasa enak
+* mobile-first
+* emotional experience first
+* UI harus calming dan atmospheric
+* jangan terlihat seperti dashboard kerja
+* build pakai mock data dulu
+* frontend harus terasa “hidup” sebelum backend selesai
+* semua screen harus visually breathable
+* motion harus lembut dan organik
+* copywriting harus human dan grounded
 
 ---
 
@@ -44,15 +47,15 @@ Fokus awal frontend:
 
 ## 3.1 Initialize Flutter Project
 
-- [x] Create frontend repo
-- [x] Init Flutter project
-- [x] Set app name: Aluna
-- [x] Set bundle id / package name
-- [x] Setup Android config
-- [x] Setup iOS config
-- [x] Setup minimum SDK
-- [x] Setup app launcher icon placeholder
-- [x] Setup splash screen placeholder
+* [x] Create frontend repo
+* [x] Init Flutter project
+* [x] Set app name: Aluna
+* [x] Set bundle id / package name
+* [x] Setup Android config
+* [x] Setup iOS config
+* [x] Setup minimum SDK
+* [x] Setup app launcher icon placeholder
+* [x] Setup splash screen placeholder
 
 ---
 
@@ -60,28 +63,28 @@ Fokus awal frontend:
 
 Install:
 
-- [x] flutter_riverpod
-- [x] go_router
-- [x] dio
-- [x] hive
-- [x] hive_flutter
-- [x] flutter_local_notifications
-- [x] intl
-- [x] freezed_annotation
-- [x] json_annotation
-- [x] phosphor_flutter / lucide_icons
-- [x] google_fonts
-- [x] smooth_page_indicator
-- [x] flutter_svg
-- [x] shared_preferences
+* [x] flutter_riverpod
+* [x] go_router
+* [x] dio
+* [x] hive
+* [x] hive_flutter
+* [x] flutter_local_notifications
+* [x] intl
+* [x] freezed_annotation
+* [x] json_annotation
+* [x] phosphor_flutter / lucide_icons
+* [x] google_fonts
+* [x] smooth_page_indicator
+* [x] flutter_svg
+* [x] shared_preferences
 
 Dev dependencies:
 
-- [x] build_runner
-- [x] freezed
-- [x] json_serializable
-- [x] flutter_lints
-- [x] hive_generator
+* [x] build_runner
+* [x] freezed
+* [x] json_serializable
+* [x] flutter_lints
+* [x] hive_generator
 
 ---
 
@@ -105,46 +108,19 @@ lib/
       app_spacing.dart
       app_radius.dart
       app_shadows.dart
+      app_gradients.dart
+      app_motion.dart
 
   core/
     api/
-      api_client.dart
-      api_endpoints.dart
-      api_interceptor.dart
-      api_error_mapper.dart
     storage/
-      local_storage_service.dart
-      cache_keys.dart
     errors/
-      app_exception.dart
-      failure.dart
     utils/
-      date_utils.dart
-      validators.dart
-      formatters.dart
     widgets/
-      app_button.dart
-      app_text_field.dart
-      app_bottom_sheet.dart
-      app_empty_state.dart
-      app_loading.dart
-      app_error_view.dart
 
   data/
     mock/
-      mock_daily_flow.dart
-      mock_routines.dart
-      mock_mood_logs.dart
-      mock_reflections.dart
     models/
-      user_model.dart
-      routine_model.dart
-      routine_step_model.dart
-      daily_flow_model.dart
-      mood_log_model.dart
-      weekly_reflection_model.dart
-      reminder_model.dart
-      plan_model.dart
 
   features/
     splash/
@@ -157,48 +133,46 @@ lib/
     reminders/
     subscription/
     profile/
-````
+```
 
 ---
 
-# 5. Phase 2 — Design System Implementation
+# 5. Phase 2 — Atmospheric Design System
 
 ## 5.1 Color Tokens
 
-Create tokens from revamped `design.md`.
+Implement final atmospheric palette.
 
-Primary colors:
+Primary palette:
 
-* [x] Rose Clay `#D98F8F`
-* [x] Peach Glow `#F3B58A`
-* [x] Butter Cream `#FFF4E6`
-* [x] Lavender Mist `#B7A6E6`
-* [x] Sage Breeze `#9DB8A5`
-* [x] Sky Powder `#BFD7EA`
-* [x] Cocoa Ink `#3C2F2F`
+* [x] Soft Cloud `#F8F4F1`
+* [x] Dusty Rose `#C98C8C`
+* [x] Soft Apricot `#E8B38B`
+* [x] Mist Lavender `#A79BCF`
+* [x] Muted Sage `#9CAF9D`
+* [x] Powder Blue `#C7D8E8`
+* [x] Cocoa Ink `#352A2A`
 
-Dark mode colors:
+Dark mode palette:
 
-* [x] Night Background `#241C24`
-* [x] Night Surface `#32263A`
-* [x] Night Text `#F7EDE2`
+* [x] Night Background `#221B22`
+* [x] Night Surface `#302633`
+* [x] Night Text `#F6EFE8`
 
 ---
 
-## 5.2 Gradient Tokens
+## 5.2 Atmospheric Gradients
 
-Create reusable gradients:
+Create reusable gradient tokens.
 
-* [x] Morning Glow: `#FFF4E6 → #F3B58A`
-* [x] Calm Evening: `#B7A6E6 → #D98F8F`
-* [x] Sky Calm: `#BFD7EA → #FFF4E6`
-* [x] Soft Wellness: `#9DB8A5 → #FFF4E6`
+* [x] Morning Calm
+* [x] Evening Reset
+* [x] Emotional Clarity
+* [x] Grounding Calm
 
 ---
 
 ## 5.3 Typography
-
-Use:
 
 * [x] Heading: Instrument Serif / Lora fallback
 * [x] Body: Plus Jakarta Sans / Inter fallback
@@ -214,7 +188,17 @@ Type scale:
 
 ---
 
-## 5.4 Spacing & Radius
+## 5.4 Typography Rules
+
+* [ ] Avoid aggressive bold typography
+* [ ] Avoid uppercase-heavy UI
+* [ ] Use breathing spacing
+* [ ] Use emotional typography hierarchy
+* [ ] Use editorial-style layout rhythm
+
+---
+
+## 5.5 Spacing & Radius
 
 Spacing:
 
@@ -238,7 +222,33 @@ Radius:
 
 ---
 
-## 5.5 Shadows & Surfaces
+## 5.6 Atmospheric Surface System
+
+* [ ] Tinted surfaces
+* [ ] Soft gradient surfaces
+* [ ] Blur glow surfaces
+* [ ] Floating layered surfaces
+* [ ] Cozy dark mode surfaces
+
+Avoid:
+
+* flat white cards
+* hard borders
+* enterprise dashboard look
+
+---
+
+## 5.7 Ambient Background System
+
+* [ ] Floating glow blobs
+* [ ] Soft blur layers
+* [ ] Atmospheric gradient depth
+* [ ] Subtle grain texture
+* [ ] Calm layered lighting
+
+---
+
+## 5.8 Shadows & Elevation
 
 * [x] Soft card shadow
 * [x] Floating button shadow
@@ -246,6 +256,67 @@ Radius:
 * [x] Tinted surface style
 * [x] Gradient surface style
 * [x] Dark mode surface style
+
+Additional:
+
+* [ ] Atmospheric modal shadow
+* [ ] Layered floating depth
+* [ ] Warm soft lighting shadow
+
+---
+
+## 5.9 Motion Foundation
+
+### Motion Keywords
+
+* soft
+* fluid
+* dreamy
+* atmospheric
+* organic
+
+---
+
+### Required Motion Types
+
+* [ ] Fade transition
+* [ ] Soft slide-up
+* [ ] Gentle scale
+* [ ] Blur transition
+* [ ] Floating ambient animation
+* [ ] Gradient movement
+* [ ] Staggered appearance
+
+---
+
+### Motion Timing
+
+#### Micro Interaction
+
+* [ ] 120–180ms
+
+#### Screen Transition
+
+* [ ] 300–450ms
+
+#### Ambient Motion
+
+* [ ] 6–12 seconds looping softly
+
+---
+
+### Motion Easing
+
+Use:
+
+* [ ] easeOutCubic
+* [ ] easeInOutQuart
+
+Avoid:
+
+* bounce
+* elastic
+* overshoot
 
 ---
 
@@ -261,6 +332,12 @@ Radius:
 * [x] Loading button
 * [x] Disabled state
 
+Additional:
+
+* [ ] Atmospheric CTA button
+* [ ] Floating FAB variant
+* [ ] Soft glow pressed state
+
 ---
 
 ## 6.2 Inputs
@@ -271,6 +348,12 @@ Radius:
 * [x] Search input
 * [x] Validation state
 * [x] Error helper text
+
+Additional:
+
+* [ ] Soft focus glow
+* [ ] Calm active state
+* [ ] Emotional placeholder styling
 
 ---
 
@@ -284,6 +367,12 @@ Radius:
 * [x] Premium card
 * [x] Empty state card
 
+Additional:
+
+* [ ] Atmospheric gradient cards
+* [ ] Floating glass-tinted cards
+* [ ] Cozy dark mode cards
+
 ---
 
 ## 6.4 Selectors
@@ -296,6 +385,11 @@ Radius:
 * [x] Day selector
 * [x] Theme selector placeholder
 
+Additional:
+
+* [ ] Glow selected state
+* [ ] Emotional color transitions
+
 ---
 
 ## 6.5 Feedback Components
@@ -306,6 +400,12 @@ Radius:
 * [x] Snackbar / toast
 * [x] Success animation
 * [x] Pull to refresh
+
+Additional:
+
+* [ ] Atmospheric empty states
+* [ ] Emotional micro-feedback
+* [ ] Calm loading shimmer
 
 ---
 
@@ -327,12 +427,6 @@ Radius:
 ---
 
 ## 7.2 Mock Repository Pattern
-
-Create repositories with switchable data source:
-
-```txt
-Mock Repository → API Repository later
-```
 
 Repositories:
 
@@ -372,8 +466,6 @@ Repositories:
 
 ## 8.2 Bottom Navigation
 
-Tabs:
-
 * [x] Today
 * [x] Routines
 * [x] Reflection
@@ -383,7 +475,7 @@ Rules:
 
 * maximum 4 tabs
 * Today is default tab
-* no hamburger menu for core navigation
+* no hamburger menu
 
 ---
 
@@ -397,11 +489,15 @@ Rules:
 * [x] Check auth/onboarding mock state
 * [x] Navigate to Welcome or Today
 
+Additional:
+
+* [ ] Floating atmospheric gradients
+* [ ] Blur glow movement
+* [ ] Ambient breathing motion
+
 ---
 
 ## 9.2 Welcome Screen
-
-Content:
 
 * [x] Logo
 * [x] Main headline
@@ -409,13 +505,11 @@ Content:
 * [x] Primary CTA
 * [x] Secondary login CTA
 
-Suggested headline:
+Additional:
 
-> A softer way to get your life together.
-
-Suggested subcopy:
-
-> Bangun rutinitas kecil yang membantu hari terasa lebih tenang dan terurus.
+* [ ] Editorial typography animation
+* [ ] Soft parallax gradients
+* [ ] Atmospheric lighting layer
 
 ---
 
@@ -429,6 +523,12 @@ Suggested subcopy:
 * [x] Continue button disabled until selected
 * [x] Save selected goals locally
 
+Additional:
+
+* [ ] Emotional color feedback
+* [ ] Floating ambient background
+* [ ] Soft staggered entrance animation
+
 ---
 
 ## 10.2 Starter Routine Screen
@@ -438,13 +538,6 @@ Suggested subcopy:
 * [x] Allow edit starter routine name
 * [x] Preview routine steps
 * [x] Continue to reminder setup
-
-Starter templates:
-
-* [x] Soft Morning
-* [x] Night Reset
-* [x] Skincare Routine
-* [x] Sunday Reset
 
 ---
 
@@ -463,8 +556,6 @@ Starter templates:
 
 ## 11.1 Today Screen Layout
 
-Must include:
-
 * [x] Atmospheric gradient header
 * [x] Greeting
 * [x] Date
@@ -474,11 +565,16 @@ Must include:
 * [x] Mood quick log
 * [x] Reflection teaser
 
+Additional:
+
+* [ ] Floating ambient gradients
+* [ ] Blur atmospheric layers
+* [ ] Breathing whitespace system
+* [ ] Emotional typography hierarchy
+
 ---
 
 ## 11.2 Today Header
-
-Examples:
 
 * [x] “hari ini pelan-pelan aja”
 * [x] “satu langkah kecil juga berarti”
@@ -495,6 +591,12 @@ Examples:
 * [x] Update progress locally
 * [x] Handle empty state
 
+Additional:
+
+* [ ] Soft staggered card animation
+* [ ] Floating routine cards
+* [ ] Atmospheric progress movement
+
 ---
 
 ## 11.4 Step Completion
@@ -506,17 +608,24 @@ Examples:
 * [x] Show soft success feedback
 * [x] Auto-complete routine if all required steps done
 
+Additional:
+
+* [ ] Soft glow completion
+* [ ] Smooth checkbox morph
+* [ ] Calm tactile feedback
+
+Avoid:
+
+* confetti
+* XP effect
+* gaming reward feeling
+
 ---
 
 # 12. Phase 9 — Routines Feature
 
 ## 12.1 Routine List
 
-* [ ] Show active routines
-* [ ] Show category filter
-* [ ] Show add routine CTA
-* [ ] Show empty state
-* [ ] Show free plan limit warning if 3 routines reached
 * [x] Show active routines
 * [x] Show category filter
 * [x] Show add routine CTA
@@ -533,7 +642,6 @@ Examples:
 * [x] Navigate back
 * [x] Show schedule days
 * [x] Show estimated duration
-* [x] Show steps
 * [x] Edit routine CTA
 * [x] Delete routine action
 
@@ -553,7 +661,7 @@ Examples:
 * [ ] Delete step
 * [ ] Reorder steps
 * [ ] Save routine
-* [ ] Validate max 3 routines for free plan locally
+* [ ] Validate max 3 routines locally
 
 ---
 
@@ -569,14 +677,11 @@ Examples:
 * [ ] Update Today mood card
 * [ ] Show success state
 
----
+Additional:
 
-## 13.2 Mood UX Rules
-
-* mood logging should take under 15 seconds
-* notes must be optional
-* do not force journaling
-* copy must feel non-judgmental
+* [ ] Emotional color transitions
+* [ ] Glow selected states
+* [ ] Tactile feedback animation
 
 ---
 
@@ -590,16 +695,14 @@ Examples:
 * [ ] Energy average
 * [ ] Stress average
 * [ ] Rule-based insight text
-* [ ] Empty state if not enough data
+* [ ] Empty state
 * [ ] Soft chart placeholder
 
----
+Additional:
 
-## 14.2 Reflection Copy Examples
-
-* [ ] “Minggu ini kamu lebih sering menyelesaikan rutinitas malam.”
-* [ ] “Langkah kecil yang kamu ulangi tetap berarti.”
-* [ ] “Rutinitas malam terlihat membantu harimu terasa lebih stabil.”
+* [ ] Atmospheric reflection cards
+* [ ] Editorial typography layout
+* [ ] Calm gradient backgrounds
 
 ---
 
@@ -662,15 +765,11 @@ Examples:
 * [ ] No fake countdown
 * [ ] No hard onboarding paywall
 
----
+Additional:
 
-## 17.2 Premium Benefits
-
-* [ ] Unlimited routines
-* [ ] Advanced reflections
-* [ ] Premium themes
-* [ ] Widgets
-* [ ] Deeper emotional insights
+* [ ] Soft luxury atmosphere
+* [ ] Emotional upgrade messaging
+* [ ] Calm premium gradients
 
 ---
 
@@ -681,7 +780,6 @@ Examples:
 * [ ] Initialize Hive
 * [ ] Create boxes
 * [ ] Store onboarding state
-* [ ] Store mock user
 * [ ] Store routines
 * [ ] Store daily flow
 * [ ] Store mood logs
@@ -690,19 +788,7 @@ Examples:
 
 ---
 
-## 18.2 Persistence Rules
-
-* [ ] App restart keeps onboarding state
-* [ ] App restart keeps created routines
-* [ ] App restart keeps completed steps for today
-* [ ] App restart keeps mood log
-* [ ] App restart keeps reminder settings
-
----
-
 # 19. Phase 16 — API Integration Foundation
-
-Do this after mock frontend feels good.
 
 ## 19.1 API Client
 
@@ -711,64 +797,63 @@ Do this after mock frontend feels good.
 * [ ] Setup auth token interceptor
 * [ ] Setup error mapper
 * [ ] Setup timeout
-* [ ] Setup retry strategy only if needed
 
 ---
 
 ## 19.2 Repository Switch
 
-* [ ] Replace mock auth repository with API repository
-* [ ] Replace mock routine repository with API repository
-* [ ] Replace mock daily flow repository with API repository
-* [ ] Replace mock mood repository with API repository
-* [ ] Replace mock reflection repository with API repository
-* [ ] Replace mock reminder repository with API repository
+* [ ] Replace mock repositories with API repositories
 
 ---
 
-# 20. Phase 17 — Auth Integration Later
-
-## 20.1 Auth Screens
+# 20. Phase 17 — Auth Integration
 
 * [ ] Login screen
 * [ ] Register screen
-* [ ] Forgot password placeholder
 * [ ] Google login placeholder
 * [ ] Session persistence
+* [ ] Backend auth sync
 
 ---
 
-## 20.2 Backend Auth Sync
+# 21. Phase 18 — Emotional Atmosphere Polish
 
-* [ ] Call POST /auth/sync after login
-* [ ] Store access token securely
-* [ ] Fetch GET /me
-* [ ] Redirect based on onboarding_completed
+## Today Screen Atmosphere
 
----
+* [ ] Floating ambient gradients
+* [ ] Atmospheric blur background
+* [ ] Emotional typography hierarchy
+* [ ] Soft stagger animation
+* [ ] Breathing whitespace
 
-# 21. Phase 18 — Polish
+Goal:
 
-## 21.1 Visual Polish
-
-* [ ] Add subtle gradient backgrounds
-* [ ] Add soft card shadows
-* [ ] Add atmospheric blur shapes
-* [ ] Add motion to onboarding
-* [ ] Add motion to routine completion
-* [ ] Add empty state illustrations
-* [ ] Add dark mode foundation
+Today screen should feel emotionally comforting in under 3 seconds.
 
 ---
 
-## 21.2 UX Polish
+## Onboarding Atmosphere
 
-* [ ] Reduce taps in routine builder
-* [ ] Make Today screen readable in 5 seconds
-* [ ] Make mood log under 15 seconds
-* [ ] Make onboarding under 90 seconds
-* [ ] Make routine completion satisfying
-* [ ] Improve copywriting on all empty states
+* [x] Fullscreen gradients
+* [x] Slow blur movement
+* [x] Editorial typography motion
+* [x] Soft parallax movement
+
+---
+
+## Mood Logging Atmosphere
+
+* [ ] Emotional color transitions
+* [ ] Glow selected states
+* [ ] Tactile soft interactions
+
+---
+
+## Dark Mode Atmosphere
+
+* [ ] Cozy dark gradients
+* [ ] Warm night lighting
+* [ ] Calm evening feeling
 
 ---
 
@@ -781,14 +866,10 @@ Do this after mock frontend feels good.
 * [ ] Create routine
 * [ ] Edit routine
 * [ ] Delete routine
-* [ ] Add step
-* [ ] Reorder steps
 * [ ] Complete daily step
-* [ ] Undo daily step
 * [ ] Log mood
 * [ ] View reflection
-* [ ] Create reminder
-* [ ] Restart app and verify data persists
+* [ ] Restart app persistence
 
 ---
 
@@ -798,7 +879,6 @@ Do this after mock frontend feels good.
 * [ ] Colors feel calm but alive
 * [ ] Typography readable
 * [ ] Buttons obvious
-* [ ] Empty states helpful
 * [ ] No dashboard SaaS feeling
 * [ ] No aggressive productivity copy
 * [ ] No childish visual style
@@ -807,77 +887,39 @@ Do this after mock frontend feels good.
 
 # 23. Phase 20 — Pre-Launch Assets
 
-## 23.1 App Assets
-
 * [ ] App icon
 * [ ] Splash logo
-* [ ] Onboarding logo
-* [ ] Empty state visuals
+* [x] Onboarding logo
 * [ ] App Store screenshots
 * [ ] TikTok carousel screenshots
 * [ ] Landing page screenshots
 
 ---
 
-# 24. Build Order Recommendation
-
-Build frontend in this order:
-
-1. Flutter project setup
-2. Design tokens
-3. Core components
-4. Mock data
-5. Navigation
-6. Splash + welcome
-7. Onboarding
-8. Today screen
-9. Step completion local state
-10. Routine list
-11. Routine builder
-12. Mood log
-13. Reflection screen
-14. Reminder UI
-15. Local notifications
-16. Profile/settings
-17. Subscription UI
-18. Local persistence
-19. API integration
-20. Polish
-21. Launch screenshots
-
----
-
-# 25. Frontend MVP Done Criteria
-
-Frontend MVP selesai jika:
+# 24. Frontend MVP Done Criteria
 
 * [ ] app bisa dibuka tanpa backend
-* [ ] onboarding bisa selesai dengan mock data
-* [ ] Today screen terlihat polished
-* [ ] user bisa membuat routine secara lokal
-* [ ] user bisa menambah step routine
-* [ ] user bisa melihat daily flow
-* [ ] user bisa complete step
-* [ ] progress berubah otomatis
-* [ ] user bisa log mood
-* [ ] user bisa melihat weekly reflection mock
-* [ ] user bisa membuat reminder lokal
-* [ ] data tetap ada setelah app restart
-* [ ] app terasa calming dan tidak seperti dashboard kerja
-* [ ] screenshot UI layak untuk konten TikTok
+* [ ] onboarding selesai dengan mock data
+* [ ] Today screen terasa polished
+* [ ] routine CRUD berjalan lokal
+* [ ] step completion smooth
+* [ ] mood logging usable
+* [ ] reflection screen calming
+* [ ] local persistence berjalan
+* [ ] app terasa emotionally comforting
+* [ ] UI layak untuk TikTok content
 
 ---
 
-# 26. Hard Rule
+# 25. Hard Rule
 
-Jangan tunggu backend untuk bikin frontend terasa hidup.
+Jangan bikin Aluna terasa seperti:
 
-Untuk Aluna, visual dan emotional experience adalah value utama.
+* productivity dashboard
+* fintech app
+* habit tracker generik
+* startup SaaS template
 
-Backend penting, tapi frontend menentukan apakah audience merasa:
+Aluna harus terasa seperti:
 
-> “ini app gue banget.”
-
-Core frontend harus menang dulu di rasa.
-
-```
+> calming digital space yang membantu hidup terasa sedikit lebih ringan.

@@ -354,7 +354,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                       child: AppButton(
                         text: 'Lanjut',
                         icon: LucideIcons.arrowRight,
-                        onPressed: () => context.go('/onboarding/generate'),
+                        onPressed: () => context.push('/onboarding/generate'),
                       ),
                     ),
                   ],
@@ -368,12 +368,14 @@ class _ReminderScreenState extends State<ReminderScreen> {
   }
 
   Widget _buildLineDot(bool isActive) {
-    return Container(
-      width: 40,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutCubic,
+      width: isActive ? 40 : 24,
       height: 4,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow,
+        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow.withValues(alpha: 0.5),
       ),
     );
   }

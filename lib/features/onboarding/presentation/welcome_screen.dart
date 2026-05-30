@@ -73,7 +73,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           width: double.infinity,
                           child: AppButton(
                             text: 'Mulai pelan-pelan',
-                            onPressed: () => context.go('/onboarding/goals'),
+                            onPressed: () => context.push('/onboarding/goals'),
                           ),
                         ),
                         const SizedBox(height: AppSpacing.s16),

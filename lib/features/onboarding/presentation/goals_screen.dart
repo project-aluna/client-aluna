@@ -54,10 +54,19 @@ class _GoalsScreenState extends State<GoalsScreen> {
               slivers: [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s32, AppSpacing.s20, AppSpacing.s32),
+                    padding: const EdgeInsets.fromLTRB(AppSpacing.s20, AppSpacing.s16, AppSpacing.s20, AppSpacing.s32),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Back Button
+                        IconButton(
+                          icon: const Icon(LucideIcons.arrowLeft, color: AppColors.cocoaInk),
+                          onPressed: () => context.pop(),
+                          style: IconButton.styleFrom(
+                            backgroundColor: AppColors.peachGlow.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.s24),
                         Text(
                           'Apa yang ingin kamu fokuskan?',
                           textAlign: TextAlign.center,
@@ -152,13 +161,13 @@ class _GoalsScreenState extends State<GoalsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildDot(false),
+                        _buildLine(false),
                         const SizedBox(width: 8),
-                        _buildDot(true),
+                        _buildLine(true),
                         const SizedBox(width: 8),
-                        _buildDot(false),
+                        _buildLine(false),
                         const SizedBox(width: 8),
-                        _buildDot(false),
+                        _buildLine(false),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.s24),
@@ -167,7 +176,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
                       child: AppButton(
                         text: 'Lanjut',
                         isDisabled: _selectedIds.isEmpty,
-                        onPressed: () => context.go('/onboarding/routines'),
+                        onPressed: () => context.push('/onboarding/routines'),
                       ),
                     ),
                   ],
@@ -180,13 +189,15 @@ class _GoalsScreenState extends State<GoalsScreen> {
     );
   }
 
-  Widget _buildDot(bool isActive) {
-    return Container(
-      width: 8,
-      height: 8,
+  Widget _buildLine(bool isActive) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutCubic,
+      width: isActive ? 40 : 24,
+      height: 4,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow,
+        borderRadius: BorderRadius.circular(2),
+        color: isActive ? AppColors.cocoaInk : AppColors.peachGlow.withValues(alpha: 0.5),
       ),
     );
   }
