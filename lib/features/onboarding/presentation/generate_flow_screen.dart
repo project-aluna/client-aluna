@@ -88,35 +88,33 @@ class _GenerateFlowScreenState extends State<GenerateFlowScreen>
       backgroundColor: AppColors.butterCream,
       body: Stack(
         children: [
-          // Atmospheric gradient background
+          // Base cloud background
           Container(
-            decoration: const BoxDecoration(
-              gradient: AppColors.morningCalm,
-            ),
+            color: AppColors.softCloud,
           ),
 
           // Floating blur blob — top right (apricot)
           Positioned(
-            top: -80,
-            right: -60,
+            top: -100,
+            right: -80,
             child: AnimatedBuilder(
               animation: _pulseAnimation,
               builder: (context, child) {
                 return Opacity(
-                  opacity: 0.4 * _pulseAnimation.value,
+                  opacity: 0.5 * _pulseAnimation.value,
                   child: child,
                 );
               },
               child: Container(
-                width: 260,
-                height: 260,
+                width: 320,
+                height: 320,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.peachGlow.withValues(alpha: 0.6),
+                      color: AppColors.peachGlow.withValues(alpha: 0.7),
                       blurRadius: 120,
-                      spreadRadius: 60,
+                      spreadRadius: 80,
                     ),
                   ],
                 ),
@@ -126,26 +124,26 @@ class _GenerateFlowScreenState extends State<GenerateFlowScreen>
 
           // Floating blur blob — bottom left (lavender)
           Positioned(
-            bottom: -100,
-            left: -80,
+            bottom: -50,
+            left: -50,
             child: AnimatedBuilder(
               animation: _pulseAnimation,
               builder: (context, child) {
                 return Opacity(
-                  opacity: 0.3 * (1.1 - _pulseAnimation.value),
+                  opacity: 0.4 * (1.2 - _pulseAnimation.value),
                   child: child,
                 );
               },
               child: Container(
-                width: 300,
-                height: 300,
+                width: 200,
+                height: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.lavenderMist.withValues(alpha: 0.5),
-                      blurRadius: 140,
-                      spreadRadius: 70,
+                      color: AppColors.lavenderMist.withValues(alpha: 0.6),
+                      blurRadius: 100,
+                      spreadRadius: 50,
                     ),
                   ],
                 ),

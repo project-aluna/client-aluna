@@ -117,7 +117,6 @@ class _RoutinesScreenState extends State<RoutinesScreen> {
                                       routine.icon ?? 'assets/icons/sparkle.png',
                                       width: 24,
                                       height: 24,
-                                      color: isSelected ? Colors.white : AppColors.cocoaInk,
                                     ),
                                   ),
                                   const SizedBox(width: AppSpacing.s16),
