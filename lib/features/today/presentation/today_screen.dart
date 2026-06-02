@@ -263,134 +263,135 @@ class TodayScreen extends ConsumerWidget {
             style: AppTypography.subheading.copyWith(color: AppColors.cocoaInk),
           ),
         ),
-        Stack(
-          children: [
-            // Vertical timeline line
-            Positioned(
-              left: 31,
-              top: 24,
-              bottom: 24,
-              child: Container(
-                width: 2,
-                color: AppColors.peachGlow.withValues(alpha: 0.3),
+          Stack(
+            children: [
+              // Vertical timeline line
+              Positioned(
+                left: 31,
+                top: 24,
+                bottom: 24,
+                child: Container(
+                  width: 2,
+                  color: AppColors.softCloud, // mist-beige
+                ),
               ),
-            ),
-            Column(
-              children: flow.routineFlows.map((routineFlow) {
-                final isCompleted = routineFlow.isCompleted;
-                final isActive = !isCompleted; // Simplify active state for UI logic
+              Column(
+                children: flow.routineFlows.map((routineFlow) {
+                  final isCompleted = routineFlow.isCompleted;
+                  final isActive = !isCompleted;
 
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.s24),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Timeline dot
-                      Container(
-                        width: 64,
-                        alignment: Alignment.center,
-                        child: Container(
-                          width: isActive ? 16 : 12,
-                          height: isActive ? 16 : 12,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: isCompleted ? AppColors.sageBreeze : AppColors.peachGlow,
-                            border: Border.all(
-                              color: AppColors.butterCream,
-                              width: 3,
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.s24),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Timeline dot
+                        Container(
+                          width: 64,
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: 16,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isCompleted ? AppColors.sageBreeze : AppColors.peachGlow,
+                              border: Border.all(
+                                color: AppColors.butterCream,
+                                width: 4,
+                              ),
+                              boxShadow: isActive ? [
+                                BoxShadow(
+                                  color: AppColors.peachGlow.withValues(alpha: 0.2),
+                                  spreadRadius: 8,
+                                )
+                              ] : [],
                             ),
-                            boxShadow: isActive ? [
-                              BoxShadow(
-                                color: AppColors.peachGlow.withValues(alpha: 0.4),
-                                spreadRadius: 4,
-                              )
-                            ] : [],
                           ),
                         ),
-                      ),
-                      
-                      // Routine Card
-                      Expanded(
-                        child: InkWell(
-                          onTap: () => context.pushNamed(AppRouteNames.routineDetail, extra: routineFlow),
-                          borderRadius: BorderRadius.circular(24),
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: isCompleted ? 0.7 : 1.0),
+                        
+                        // Routine Card
+                        Expanded(
+                          child: Opacity(
+                            opacity: isCompleted ? 0.7 : 1.0,
+                            child: InkWell(
+                              onTap: () => context.pushNamed(AppRouteNames.routineDetail, extra: routineFlow),
                               borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.cocoaInk.withValues(alpha: isActive ? 0.08 : 0.04),
-                                  blurRadius: isActive ? 32 : 24,
-                                  offset: Offset(0, isActive ? 12 : 8),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                padding: const EdgeInsets.all(AppSpacing.s16),
+                                transform: isActive ? Matrix4.diagonal3Values(1.02, 1.02, 1.0) : Matrix4.identity(),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(24),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.cocoaInk.withValues(alpha: isActive ? 0.08 : 0.04),
+                                      blurRadius: isActive ? 32 : 24,
+                                      offset: Offset(0, isActive ? 12 : 8),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                              border: Border.all(
-                                color: isActive ? AppColors.peachGlow.withValues(alpha: 0.3) : Colors.transparent,
-                                width: 1,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 48,
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        color: isCompleted ? AppColors.sageBreeze.withValues(alpha: 0.2) : AppColors.peachGlow.withValues(alpha: 0.2),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        isCompleted ? LucideIcons.checkCircle : LucideIcons.coffee,
+                                        color: isCompleted ? AppColors.sageBreeze : AppColors.cocoaInk,
+                                      ),
+                                    ),
+                                    const SizedBox(width: AppSpacing.s16),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            routineFlow.routineName,
+                                            style: AppTypography.subheading.copyWith(
+                                              color: AppColors.cocoaInk,
+                                              fontSize: 17,
+                                              fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
+                                              decoration: isCompleted ? TextDecoration.lineThrough : null,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            '${routineFlow.startTime ?? "--:--"} • ${isCompleted ? 'Selesai' : 'Saatnya jeda sejenak'}',
+                                            style: AppTypography.caption.copyWith(
+                                              color: isCompleted ? AppColors.cocoaInk.withValues(alpha: 0.5) : AppColors.cocoaInk,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (isActive)
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: const BoxDecoration(
+                                          color: AppColors.cocoaInk,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(LucideIcons.play, color: Colors.white, size: 18),
+                                      ),
+                                  ],
+                                ),
                               ),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: isCompleted ? AppColors.sageBreeze.withValues(alpha: 0.2) : AppColors.peachGlow.withValues(alpha: 0.2),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    isCompleted ? LucideIcons.checkCircle2 : LucideIcons.coffee,
-                                    color: isCompleted ? AppColors.sageBreeze : AppColors.peachGlow,
-                                  ),
-                                ),
-                                const SizedBox(width: AppSpacing.s16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        routineFlow.routineName,
-                                        style: AppTypography.subheading.copyWith(
-                                          color: AppColors.cocoaInk,
-                                          fontSize: 17,
-                                          decoration: isCompleted ? TextDecoration.lineThrough : null,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        '${routineFlow.startTime ?? "--:--"} • ${isCompleted ? 'Selesai' : 'Saatnya jeda sejenak'}',
-                                        style: AppTypography.caption.copyWith(
-                                          color: isCompleted ? AppColors.cocoaInk.withValues(alpha: 0.5) : AppColors.peachGlow,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                if (isActive)
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: const BoxDecoration(
-                                      color: AppColors.cocoaInk,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(LucideIcons.play, color: Colors.white, size: 18),
-                                  ),
-                              ],
-                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
       ],
     );
   }
