@@ -206,11 +206,11 @@ class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
                 // Connecting line
                 if (index != _routine.steps.length - 1)
                   Positioned(
-                    top: 24,
-                    bottom: -24,
+                    top: 28,
+                    bottom: -32,
                     child: Container(
                       width: 2,
-                      color: AppColors.peachGlow.withValues(alpha: 0.3),
+                      color: AppColors.softCloud, // mist-beige
                     ),
                   ),
                 // Step Icon indicator
@@ -218,24 +218,28 @@ class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
                   alignment: Alignment.topCenter,
                   child: Container(
                     margin: const EdgeInsets.only(top: 8),
-                    width: 36,
-                    height: 36,
+                    width: 40,
+                    height: 40,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isCompleted 
                         ? AppColors.sageBreeze 
-                        : (isActive ? AppColors.roseClay : AppColors.peachGlow.withValues(alpha: 0.2)),
+                        : (isActive ? AppColors.peachGlow.withValues(alpha: 0.3) : AppColors.softCloud),
                       boxShadow: isActive ? [
                         BoxShadow(
-                          color: AppColors.roseClay.withValues(alpha: 0.4),
+                          color: AppColors.peachGlow.withValues(alpha: 0.2),
                           spreadRadius: 4,
                         )
                       ] : [],
                     ),
                     child: Icon(
-                      isCompleted ? LucideIcons.check : LucideIcons.circle,
-                      color: isCompleted ? Colors.white : (isActive ? Colors.white : AppColors.peachGlow),
-                      size: 18,
+                      isCompleted 
+                          ? LucideIcons.check 
+                          : (isActive ? LucideIcons.flame : LucideIcons.penTool),
+                      color: isCompleted 
+                          ? Colors.white 
+                          : (isActive ? AppColors.cocoaInk : AppColors.cocoaInk.withValues(alpha: 0.5)),
+                      size: 20,
                     ),
                   ),
                 ),
@@ -249,43 +253,53 @@ class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.s24),
-              child: InkWell(
-                onTap: () => _toggleStep(index),
-                borderRadius: BorderRadius.circular(24),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  padding: const EdgeInsets.all(AppSpacing.s16),
-                  decoration: BoxDecoration(
-                    color: isUpcoming ? Colors.white.withValues(alpha: 0.7) : Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: isActive ? AppColors.roseClay : (isCompleted ? AppColors.sageBreeze.withValues(alpha: 0.3) : Colors.transparent),
-                      width: isActive ? 2 : 1,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.cocoaInk.withValues(alpha: isActive ? 0.08 : 0.03),
-                        blurRadius: isActive ? 24 : 16,
-                        offset: Offset(0, isActive ? 8 : 4),
+              child: Opacity(
+                opacity: isUpcoming ? 0.8 : 1.0,
+                child: InkWell(
+                  onTap: () => _toggleStep(index),
+                  borderRadius: BorderRadius.circular(24),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    padding: const EdgeInsets.all(AppSpacing.s16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: isActive 
+                            ? AppColors.peachGlow 
+                            : (isCompleted ? AppColors.sageBreeze.withValues(alpha: 0.3) : AppColors.softCloud),
+                        width: isActive ? 2 : 1,
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        step.title,
-                        style: AppTypography.subheading.copyWith(
-                          color: AppColors.cocoaInk,
-                          decoration: isCompleted ? TextDecoration.lineThrough : null,
-                          decorationColor: AppColors.cocoaInk.withValues(alpha: 0.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.cocoaInk.withValues(alpha: isActive ? 0.08 : 0.03),
+                          blurRadius: isActive ? 24 : 16,
+                          offset: Offset(0, isActive ? 8 : 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Opacity(
+                        opacity: isCompleted ? 0.7 : 1.0,
+                        child: Text(
+                          step.title,
+                          style: AppTypography.subheading.copyWith(
+                            color: AppColors.cocoaInk,
+                            decoration: isCompleted ? TextDecoration.lineThrough : null,
+                            decorationColor: AppColors.cocoaInk.withValues(alpha: 0.5),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        'Langkah kecil untuk progresmu.',
-                        style: AppTypography.body.copyWith(
-                          color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                      Opacity(
+                        opacity: isCompleted ? 0.7 : 1.0,
+                        child: Text(
+                          'Langkah kecil untuk progresmu.',
+                          style: AppTypography.body.copyWith(
+                            color: AppColors.cocoaInk.withValues(alpha: 0.6),
+                          ),
                         ),
                       ),
                       if (isActive)
@@ -299,44 +313,18 @@ class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16, vertical: 8),
                                   decoration: BoxDecoration(
-                                    color: AppColors.roseClay.withValues(alpha: 0.15),
+                                    color: AppColors.peachGlow.withValues(alpha: 0.2),
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const Icon(LucideIcons.play, size: 16, color: AppColors.roseClay),
+                                      const Icon(LucideIcons.play, size: 16, color: AppColors.cocoaInk),
                                       const SizedBox(width: 4),
                                       Text(
-                                        'Mulai',
+                                        'Mulai (5 mnt)',
                                         style: AppTypography.caption.copyWith(
-                                          color: AppColors.roseClay,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.s12),
-                              InkWell(
-                                onTap: () => _toggleStep(index),
-                                borderRadius: BorderRadius.circular(100),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s16, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: AppColors.peachGlow),
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(LucideIcons.skipForward, size: 16, color: AppColors.peachGlow),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        'Lewati',
-                                        style: AppTypography.caption.copyWith(
-                                          color: AppColors.peachGlow,
+                                          color: AppColors.cocoaInk,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -351,6 +339,7 @@ class _RoutineDetailScreenState extends ConsumerState<RoutineDetailScreen> {
                   ),
                 ),
               ),
+              ), // End Opacity
             ),
           ),
         ],
