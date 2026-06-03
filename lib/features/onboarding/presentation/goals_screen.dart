@@ -112,11 +112,23 @@ class _GoalsScreenState extends State<GoalsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
-                                    child: Text(
-                                      goal.name,
-                                      style: AppTypography.subheading.copyWith(
-                                        color: AppColors.cocoaInk,
-                                      ),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          goal.icon,
+                                          width: 28,
+                                          height: 28,
+                                        ),
+                                        const SizedBox(width: AppSpacing.s12),
+                                        Expanded(
+                                          child: Text(
+                                            goal.name,
+                                            style: AppTypography.subheading.copyWith(
+                                              color: AppColors.cocoaInk,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Icon(

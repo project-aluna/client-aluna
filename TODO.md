@@ -649,19 +649,19 @@ Avoid:
 
 ## 12.3 Routine Builder
 
-* [ ] Routine name input
-* [ ] Category selector
-* [ ] Icon selector placeholder
-* [ ] Color selector
-* [ ] Start time picker
-* [ ] Schedule type selector
-* [ ] Schedule days selector
-* [ ] Add step
-* [ ] Edit step
-* [ ] Delete step
-* [ ] Reorder steps
-* [ ] Save routine
-* [ ] Validate max 3 routines locally
+* [x] Routine name input
+* [x] Category selector
+* [x] Icon selector placeholder
+* [x] Color selector
+* [x] Start time picker
+* [x] Schedule type selector
+* [x] Schedule days selector
+* [x] Add step
+* [x] Edit step
+* [x] Delete step
+* [x] Reorder steps
+* [x] Save routine
+* [x] Validate max 3 routines locally
 
 ---
 
@@ -669,19 +669,19 @@ Avoid:
 
 ## 13.1 Mood Quick Log
 
-* [ ] Mood score selector
-* [ ] Energy score selector
-* [ ] Stress score selector
-* [ ] Optional note
-* [ ] Save locally
-* [ ] Update Today mood card
-* [ ] Show success state
+* [x] Mood score selector
+* [x] Energy score selector
+* [x] Stress score selector
+* [x] Optional note
+* [x] Save locally
+* [x] Update Today mood card
+* [x] Show success state
 
 Additional:
 
-* [ ] Emotional color transitions
-* [ ] Glow selected states
-* [ ] Tactile feedback animation
+* [x] Emotional color transitions
+* [x] Glow selected states
+* [x] Tactile feedback animation
 
 ---
 
